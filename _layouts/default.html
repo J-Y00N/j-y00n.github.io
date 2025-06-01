@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang='ko'>
+  <head>
+    <meta charset='utf-8'>
+    <title>{{ page.title }} · {{ site.title }}</title>
+    <link rel='stylesheet' href='{{ '/assets/css/main.css' | relative_url }}'>
+    {% seo %}
+  </head>
+  <body class='prose mx-auto px-4'>
+    {% include header.html %}
+    <main>{{ content }}</main>
+    {% include footer.html %}
+  </body>
+</html>
