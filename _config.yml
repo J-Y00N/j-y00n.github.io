@@ -16,5 +16,5 @@ collections:
     output: true          # 빌드된 HTML을 _site에 내보냄
     permalink: /:title/   # /about/, /cv/ 같은 URL
   publications:
-    output: true
-    permalink: /publications/:path/
+    output: true          # 반드시 있어야 함
+    permalink: /publications/:name/

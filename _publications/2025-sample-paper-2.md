@@ -1,12 +1,12 @@
 ---
 layout: default
-title: 'Awesome Paper Title'
+title: 'Paper Title'
 venue: '- 2025'
-permalink: /publications/2025-awesome-paper_copy/
+permalink: /publications/2025-smaple-paper-2/
 ---
 **Authors**: J. Yoon, AI Collaborators
 
-# sample copy
+# sample-2
 
 > 초록(Abstract) 한 문단.
 
