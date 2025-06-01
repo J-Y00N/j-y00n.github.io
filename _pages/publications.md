@@ -1,4 +1,3 @@
-<!-- _pages/publications.md -->
 ---
 layout: default
 title: Publications
