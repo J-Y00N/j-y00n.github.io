@@ -12,7 +12,7 @@ permalink: /publications/
   {% for paper in pubs %}
     <li>
       <a href="{{ paper.url | relative_url }}">{{ paper.title }}</a>
-      <span>· {{ paper.venue }}</span>
+      {% if paper.venue %} · <em>{{ paper.venue }}</em>{% endif %}
     </li>
   {% endfor %}
 </ul>
