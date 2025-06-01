@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 'Paper Title'
+title: 'Sample paper 1'
 venue: '- 2025'
 permalink: /publications/2025-smaple-paper-1/
 ---
