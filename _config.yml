@@ -1,0 +1,20 @@
+title: 'J. Yoon'
+description: 'Graduate applicant in Machine Learning'
+url: 'https://j-y00n.github.io'
+baseurl: ''
+
+# Build settings
+sass:
+  style: compressed
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+collections:
+  pages:
+    output: true          # 빌드된 HTML을 _site에 내보냄
+    permalink: /:title/   # /about/, /cv/ 같은 URL
+  publications:
+    output: true
+    permalink: /publications/:path/
