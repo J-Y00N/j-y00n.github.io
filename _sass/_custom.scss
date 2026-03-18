@@ -99,7 +99,7 @@ body {
 
 .site-nav {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 0.9rem;
   justify-content: flex-end;
   padding-top: 0.25rem;
@@ -107,8 +107,9 @@ body {
 
 .site-controls {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.9rem;
+  flex-wrap: nowrap;
 }
 
 .theme-toggle {
@@ -136,6 +137,7 @@ a {
 .site-nav a {
   text-decoration: none;
   font-size: 0.98rem;
+  white-space: nowrap;
 }
 
 .site-nav a:hover,
