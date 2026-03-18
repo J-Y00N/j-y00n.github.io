@@ -8,6 +8,18 @@
   --accent-soft: #dcefe7;
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1c222b;
+    --panel: #232b36;
+    --text: #e4ebf3;
+    --muted: #a4b0be;
+    --line: #3a4554;
+    --accent: #8bc7d7;
+    --accent-soft: #283847;
+  }
+}
+
 * {
   box-sizing: border-box;
 }
@@ -20,6 +32,14 @@ body {
   color: var(--text);
   font-family: Georgia, 'Times New Roman', serif;
   line-height: 1.7;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background:
+      radial-gradient(circle at top, rgba(139, 199, 215, 0.08), transparent 35%),
+      linear-gradient(180deg, #18202a 0%, var(--bg) 100%);
+  }
 }
 
 .site-shell {
@@ -88,6 +108,14 @@ a:hover {
 
 .profile-intro-compact {
   margin-bottom: 1rem;
+}
+
+.about-meta-row {
+  display: grid;
+  grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+  margin: 1rem 0 1.5rem;
 }
 
 .profile-copy > *:last-child {
@@ -238,6 +266,10 @@ blockquote {
   }
 
   .profile-intro {
+    grid-template-columns: 1fr;
+  }
+
+  .about-meta-row {
     grid-template-columns: 1fr;
   }
 

@@ -4,27 +4,23 @@ permalink: /about/
 ---
 ## About Me
 
-<div class="profile-intro profile-intro-compact">
-  <div class="profile-copy">
-
 This page can remain slightly more detailed than the home page, but it should still read as a concise academic introduction rather than a full autobiography.
+
+<div class="about-meta-row">
+  <div class="profile-photo-slot profile-photo-slot-small">
+    Optional portrait
+    <span>Use the same image as the home page if desired</span>
   </div>
-  <aside class="profile-aside">
-    <div class="profile-photo-slot profile-photo-slot-small">
-      Optional portrait
-      <span>Use the same image as the home page if desired</span>
+  <div class="profile-links-card">
+    <h2>External Links</h2>
+    <p class="muted-note">Keep only the links you actually want to show publicly.</p>
+    <div class="profile-link-pills">
+      <a class="profile-pill" href="#">Email</a>
+      <a class="profile-pill" href="#">GitHub</a>
+      <a class="profile-pill" href="#">LinkedIn</a>
+      <a class="profile-pill" href="#">Scholar</a>
     </div>
-    <div class="profile-links-card">
-      <h2>External Links</h2>
-      <p class="muted-note">Keep only the links you actually want to show publicly.</p>
-      <div class="profile-link-pills">
-        <a class="profile-pill" href="#">Email</a>
-        <a class="profile-pill" href="#">GitHub</a>
-        <a class="profile-pill" href="#">LinkedIn</a>
-        <a class="profile-pill" href="#">Scholar</a>
-      </div>
-    </div>
-  </aside>
+  </div>
 </div>
 
 ## Fill-In Template
