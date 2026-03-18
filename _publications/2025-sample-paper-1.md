@@ -1,13 +1,15 @@
 ---
-layout: default
-title: 'Sample paper 1'
-venue: '- 2025'
-permalink: /publications/2025-smaple-paper-1/
+title: 'Sample Paper 1'
+date: 2025-01-01
+venue: 'Preprint'
+status: Draft example
+permalink: /publications/2025-sample-paper-1/
 ---
-**Authors**: J. Yoon, AI Collaborators
+**Authors**: J. Yoon, Collaborators
 
-# sample-1
+## Abstract
 
-> 초록(Abstract) 한 문단.
+This is a placeholder publication entry.
+Replace this with a paper abstract, report summary, or manuscript description.
 
-<!-- [PDF](https://arxiv.org/pdf/xxxx.xxxxx) · [Code](https://github.com/username/awesome-paper) -->
+<!-- Example links: [PDF](https://example.com) · [Code](https://github.com/username/repo) -->

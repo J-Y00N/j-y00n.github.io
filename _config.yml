@@ -1,9 +1,12 @@
 title: 'J. Yoon'
-description: 'Graduate applicant in Machine Learning'
+description: 'Academic website for research interests, projects, notes, and application materials'
 url: 'https://j-y00n.github.io'
 baseurl: ''
+lang: 'en'
+timezone: 'Asia/Seoul'
+markdown: kramdown
+permalink: pretty
 
-# Build settings
 sass:
   style: compressed
 
@@ -13,8 +16,35 @@ plugins:
 
 collections:
   pages:
-    output: true          # 빌드된 HTML을 _site에 내보냄
-    permalink: /:title/   # /about/, /cv/ 같은 URL
+    output: true
+    permalink: /:title/
   publications:
-    output: true          # 반드시 있어야 함
+    output: true
     permalink: /publications/:name/
+  projects:
+    output: true
+    permalink: /projects/:name/
+  notes:
+    output: true
+    permalink: /notes/:name/
+
+defaults:
+  - scope:
+      path: ''
+    values:
+      layout: default
+  - scope:
+      path: ''
+      type: publications
+    values:
+      section: publications
+  - scope:
+      path: ''
+      type: projects
+    values:
+      section: projects
+  - scope:
+      path: ''
+      type: notes
+    values:
+      section: notes
