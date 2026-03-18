@@ -26,7 +26,6 @@ Rather than presenting a fixed label too early, this site is meant to document h
         <a class="profile-pill" href="#">GitHub</a>
         <a class="profile-pill" href="#">LinkedIn</a>
         <a class="profile-pill" href="#">Scholar</a>
-        <a class="profile-pill" href="#">CV PDF</a>
       </div>
     </div>
   </aside>
