@@ -3,6 +3,8 @@ title: Home
 ---
 # J. Yoon
 
+<div class="profile-intro">
+  <div class="profile-copy">
 <!-- Replace the paragraphs below with a short real introduction once ready. -->
 
 This website is a lightweight academic profile for graduate-school preparation, research documentation, and public technical writing.
@@ -10,6 +12,24 @@ My current direction remains intentionally open across statistics, applied mathe
 
 I am especially drawn to work that combines mathematical structure, empirical data, and scientific interpretation.
 Rather than presenting a fixed label too early, this site is meant to document how those interests develop through projects, notes, and application materials.
+  </div>
+  <aside class="profile-aside">
+    <div class="profile-photo-slot">
+      Optional profile photo
+      <span>Add an image later, for example `assets/images/profile.jpg`</span>
+    </div>
+    <div class="profile-links-card">
+      <h2>Profile Links</h2>
+      <ul class="profile-links-list">
+        <li>Email: `[your email]`</li>
+        <li>GitHub: `[https://github.com/your-handle]`</li>
+        <li>LinkedIn: `[https://www.linkedin.com/in/your-handle]`</li>
+        <li>Google Scholar: `[profile link if available]`</li>
+        <li>CV PDF: `[add link later]`</li>
+      </ul>
+    </div>
+  </aside>
+</div>
 
 ## Draft Intro Template
 
