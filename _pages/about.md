@@ -4,7 +4,27 @@ permalink: /about/
 ---
 ## About Me
 
+<div class="profile-intro profile-intro-compact">
+  <div class="profile-copy">
+
 This page can remain slightly more detailed than the home page, but it should still read as a concise academic introduction rather than a full autobiography.
+  </div>
+  <aside class="profile-aside">
+    <div class="profile-photo-slot profile-photo-slot-small">
+      Optional portrait
+      <span>Use the same image as the home page if desired</span>
+    </div>
+    <div class="profile-links-card">
+      <h2>External Links</h2>
+      <ul class="profile-links-list">
+        <li>Email: `[your email]`</li>
+        <li>GitHub: `[link]`</li>
+        <li>LinkedIn: `[link]`</li>
+        <li>Google Scholar: `[link if available]`</li>
+      </ul>
+    </div>
+  </aside>
+</div>
 
 ## Fill-In Template
 
