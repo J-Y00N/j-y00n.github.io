@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ -f ".ruby-version" ]] && command -v ruby >/dev/null 2>&1; then
+  current_ruby="$(ruby -e 'print RUBY_VERSION')"
+  required_ruby="$(< .ruby-version)"
+  if [[ "$current_ruby" != "$required_ruby" ]]; then
+    echo "Expected Ruby $required_ruby but found $current_ruby."
+    echo "Load rbenv first, then run this script again."
+    exit 1
+  fi
+fi
+
+bundle config set path vendor/bundle
+bundle install

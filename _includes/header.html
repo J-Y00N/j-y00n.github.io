@@ -1,9 +1,13 @@
-<header class='flex gap-4 py-4'>
-  <a href='{{ '/' | relative_url }}' class='text-xl font-bold'>{{ site.title }}</a>
-  <nav class='flex gap-3 text-sm'>
-    <a href='{{ '/about/' | relative_url }}'>About</a>
-    <!-- <a href='{{ '/publications/' | relative_url }}'>Publications</a> -->
+<header class="site-header">
+  <div>
+    <a href="{{ '/' | relative_url }}" class="site-title">{{ site.title }}</a>
+    <p class="site-tagline">Research interests, academic materials, and technical notes</p>
+  </div>
+  <nav class="site-nav" aria-label="Main navigation">
+    <a href="{{ '/about/' | relative_url }}">About</a>
+    <a href="{{ '/research/' | relative_url }}">Research</a>
     <a href="{{ '/publications/' | relative_url }}">Publications</a>
-    <a href='{{ '/cv/' | relative_url }}'>CV</a>
+    <a href="{{ '/notes/' | relative_url }}">Notes</a>
+    <a href="{{ '/cv/' | relative_url }}">CV</a>
   </nav>
 </header>
