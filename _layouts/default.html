@@ -3,6 +3,22 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+      (function() {
+        var storedTheme = null;
+        try {
+          storedTheme = localStorage.getItem('theme-preference');
+        } catch (error) {
+          storedTheme = null;
+        }
+
+        if (storedTheme === 'light' || storedTheme === 'dark') {
+          document.documentElement.setAttribute('data-theme', storedTheme);
+        } else {
+          document.documentElement.setAttribute('data-theme', 'auto');
+        }
+      })();
+    </script>
     <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
     {% seo %}
@@ -13,5 +29,48 @@
       <main class="page-content">{{ content }}</main>
       {% include footer.html %}
     </div>
+    <script>
+      (function() {
+        var button = document.querySelector('[data-theme-toggle]');
+        if (!button) return;
+
+        var themes = ['auto', 'light', 'dark'];
+
+        function getStoredTheme() {
+          try {
+            return localStorage.getItem('theme-preference') || 'auto';
+          } catch (error) {
+            return 'auto';
+          }
+        }
+
+        function applyTheme(theme) {
+          document.documentElement.setAttribute('data-theme', theme);
+          button.textContent = theme.charAt(0).toUpperCase() + theme.slice(1);
+          button.setAttribute('aria-label', 'Theme: ' + theme);
+        }
+
+        function storeTheme(theme) {
+          try {
+            if (theme === 'auto') {
+              localStorage.removeItem('theme-preference');
+            } else {
+              localStorage.setItem('theme-preference', theme);
+            }
+          } catch (error) {
+          }
+        }
+
+        applyTheme(getStoredTheme());
+
+        button.addEventListener('click', function() {
+          var currentTheme = document.documentElement.getAttribute('data-theme') || 'auto';
+          var currentIndex = themes.indexOf(currentTheme);
+          var nextTheme = themes[(currentIndex + 1) % themes.length];
+          storeTheme(nextTheme);
+          applyTheme(nextTheme);
+        });
+      })();
+    </script>
   </body>
 </html>

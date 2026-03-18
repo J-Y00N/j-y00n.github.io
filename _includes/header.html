@@ -3,11 +3,22 @@
     <a href="{{ '/' | relative_url }}" class="site-title">{{ site.title }}</a>
     <p class="site-tagline">Research interests, academic materials, and technical notes</p>
   </div>
-  <nav class="site-nav" aria-label="Main navigation">
-    <a href="{{ '/about/' | relative_url }}">About</a>
-    <a href="{{ '/research/' | relative_url }}">Research</a>
-    <a href="{{ '/publications/' | relative_url }}">Publications</a>
-    <a href="{{ '/notes/' | relative_url }}">Notes</a>
-    <a href="{{ '/cv/' | relative_url }}">CV</a>
-  </nav>
+  <div class="site-controls">
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="{{ '/about/' | relative_url }}">About</a>
+      <a href="{{ '/research/' | relative_url }}">Research</a>
+      <a href="{{ '/publications/' | relative_url }}">Publications</a>
+      <a href="{{ '/notes/' | relative_url }}">Notes</a>
+      <a href="{{ '/cv/' | relative_url }}">CV</a>
+    </nav>
+    <button
+      type="button"
+      class="theme-toggle"
+      data-theme-toggle
+      aria-label="Toggle color theme"
+      title="Toggle color theme"
+    >
+      Auto
+    </button>
+  </div>
 </header>

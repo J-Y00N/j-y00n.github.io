@@ -8,8 +8,28 @@
   --accent-soft: #dcefe7;
 }
 
+:root[data-theme="dark"] {
+  --bg: #1c222b;
+  --panel: #232b36;
+  --text: #e4ebf3;
+  --muted: #a4b0be;
+  --line: #3a4554;
+  --accent: #8bc7d7;
+  --accent-soft: #283847;
+}
+
+:root[data-theme="light"] {
+  --bg: #f5f1e8;
+  --panel: #fffdf8;
+  --text: #1f2430;
+  --muted: #5a6573;
+  --line: #d9cfbf;
+  --accent: #0f5c4d;
+  --accent-soft: #dcefe7;
+}
+
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #1c222b;
     --panel: #232b36;
     --text: #e4ebf3;
@@ -34,8 +54,14 @@ body {
   line-height: 1.7;
 }
 
+:root[data-theme="dark"] body {
+  background:
+    radial-gradient(circle at top, rgba(139, 199, 215, 0.08), transparent 35%),
+    linear-gradient(180deg, #18202a 0%, var(--bg) 100%);
+}
+
 @media (prefers-color-scheme: dark) {
-  body {
+  :root:not([data-theme="light"]) body {
     background:
       radial-gradient(circle at top, rgba(139, 199, 215, 0.08), transparent 35%),
       linear-gradient(180deg, #18202a 0%, var(--bg) 100%);
@@ -79,6 +105,29 @@ body {
   padding-top: 0.25rem;
 }
 
+.site-controls {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+}
+
+.theme-toggle {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 0.45rem 0.75rem;
+  font: inherit;
+  font-size: 0.92rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(31, 36, 48, 0.04);
+}
+
+.theme-toggle:hover {
+  filter: brightness(0.98);
+}
+
 .site-nav a,
 a {
   color: var(--accent);
@@ -110,12 +159,22 @@ a:hover {
   margin-bottom: 1rem;
 }
 
-.about-meta-row {
+.about-layout {
   display: grid;
-  grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
-  gap: 1rem;
+  grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.7fr);
+  gap: 1.5rem;
   align-items: start;
-  margin: 1rem 0 1.5rem;
+}
+
+.about-sidebar {
+  display: grid;
+  gap: 1rem;
+  position: sticky;
+  top: 1.25rem;
+}
+
+.about-main {
+  min-width: 0;
 }
 
 .profile-copy > *:last-child {
@@ -156,8 +215,9 @@ a:hover {
   font-size: 0.92rem;
 }
 
-.profile-photo-slot-small {
-  min-height: 180px;
+.profile-photo-slot-small,
+.about-photo-slot {
+  min-height: 220px;
 }
 
 .profile-links-card h2,
@@ -261,6 +321,12 @@ blockquote {
     flex-direction: column;
   }
 
+  .site-controls {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .site-nav {
     justify-content: flex-start;
   }
@@ -269,8 +335,12 @@ blockquote {
     grid-template-columns: 1fr;
   }
 
-  .about-meta-row {
+  .about-layout {
     grid-template-columns: 1fr;
+  }
+
+  .about-sidebar {
+    position: static;
   }
 
   h1 {

@@ -2,26 +2,27 @@
 title: About
 permalink: /about/
 ---
+<div class="about-layout" markdown="1">
+  <aside class="about-sidebar">
+    <div class="profile-photo-slot about-photo-slot">
+      Optional portrait
+      <span>Use the same image as the home page if desired</span>
+    </div>
+    <div class="profile-links-card">
+      <h2>External Links</h2>
+      <p class="muted-note">Keep only the links you actually want to show publicly.</p>
+      <div class="profile-link-pills">
+        <a class="profile-pill" href="#">Email</a>
+        <a class="profile-pill" href="#">GitHub</a>
+        <a class="profile-pill" href="#">LinkedIn</a>
+        <a class="profile-pill" href="#">Scholar</a>
+      </div>
+    </div>
+  </aside>
+  <div class="about-main" markdown="1">
 ## About Me
 
 This page can remain slightly more detailed than the home page, but it should still read as a concise academic introduction rather than a full autobiography.
-
-<div class="about-meta-row">
-  <div class="profile-photo-slot profile-photo-slot-small">
-    Optional portrait
-    <span>Use the same image as the home page if desired</span>
-  </div>
-  <div class="profile-links-card">
-    <h2>External Links</h2>
-    <p class="muted-note">Keep only the links you actually want to show publicly.</p>
-    <div class="profile-link-pills">
-      <a class="profile-pill" href="#">Email</a>
-      <a class="profile-pill" href="#">GitHub</a>
-      <a class="profile-pill" href="#">LinkedIn</a>
-      <a class="profile-pill" href="#">Scholar</a>
-    </div>
-  </div>
-</div>
 
 ## Fill-In Template
 
@@ -64,3 +65,5 @@ If useful later, this page can also briefly mention:
 
 This site is designed to stay simple to maintain and easy to grow over time.
 Most content can be updated by editing Markdown files, which makes it straightforward to add projects, notes, publications, and future academic materials without changing the site structure itself.
+  </div>
+</div>
