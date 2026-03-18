@@ -150,6 +150,31 @@ a:hover {
   margin-top: 0.45rem;
 }
 
+.profile-link-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.profile-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+.profile-pill:hover {
+  text-decoration: none;
+  filter: brightness(0.98);
+}
+
 .muted-note {
   color: var(--muted);
   font-size: 0.92rem;

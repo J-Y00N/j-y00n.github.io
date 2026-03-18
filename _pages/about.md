@@ -16,12 +16,13 @@ This page can remain slightly more detailed than the home page, but it should st
     </div>
     <div class="profile-links-card">
       <h2>External Links</h2>
-      <ul class="profile-links-list">
-        <li>Email: `[your email]`</li>
-        <li>GitHub: `[link]`</li>
-        <li>LinkedIn: `[link]`</li>
-        <li>Google Scholar: `[link if available]`</li>
-      </ul>
+      <p class="muted-note">Keep only the links you actually want to show publicly.</p>
+      <div class="profile-link-pills">
+        <a class="profile-pill" href="#">Email</a>
+        <a class="profile-pill" href="#">GitHub</a>
+        <a class="profile-pill" href="#">LinkedIn</a>
+        <a class="profile-pill" href="#">Scholar</a>
+      </div>
     </div>
   </aside>
 </div>

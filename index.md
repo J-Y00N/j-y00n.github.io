@@ -20,13 +20,14 @@ Rather than presenting a fixed label too early, this site is meant to document h
     </div>
     <div class="profile-links-card">
       <h2>Profile Links</h2>
-      <ul class="profile-links-list">
-        <li>Email: `[your email]`</li>
-        <li>GitHub: `[https://github.com/your-handle]`</li>
-        <li>LinkedIn: `[https://www.linkedin.com/in/your-handle]`</li>
-        <li>Google Scholar: `[profile link if available]`</li>
-        <li>CV PDF: `[add link later]`</li>
-      </ul>
+      <p class="muted-note">Replace `#` with real links later.</p>
+      <div class="profile-link-pills">
+        <a class="profile-pill" href="#">Email</a>
+        <a class="profile-pill" href="#">GitHub</a>
+        <a class="profile-pill" href="#">LinkedIn</a>
+        <a class="profile-pill" href="#">Scholar</a>
+        <a class="profile-pill" href="#">CV PDF</a>
+      </div>
     </div>
   </aside>
 </div>
