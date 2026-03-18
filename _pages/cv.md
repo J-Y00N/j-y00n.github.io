@@ -10,7 +10,7 @@ It should stay readable on its own, even before a formal PDF CV is finalized.
 <div class="cv-download-card">
   <h2>CV Download</h2>
   <p>Add a PDF later when ready.</p>
-  <p><a href="#">[Download CV PDF]</a></p>
+  <p><a class="profile-pill" href="#">Download CV PDF</a></p>
   <p class="muted-note">Recommended future path: <code>/assets/files/cv.pdf</code></p>
 </div>
 
