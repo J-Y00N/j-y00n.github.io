@@ -244,6 +244,16 @@ General rule:
 - use external links for journal pages, arXiv, DOI pages, or conference proceedings when available
 - if a PDF belongs to a publication entry, link it from the publication item rather than duplicating file references across multiple pages
 
+## Profile Image
+
+Use `assets/images/profile.jpg` or `assets/images/profile.png` for the main profile image.
+
+General rule:
+
+- keep the main profile image at a stable top-level path under `assets/images/`
+- keep research figures under `assets/images/research/`
+- avoid mixing profile images with project-specific figures
+
 ## Writing Style Guidelines
 
 For this site, prefer a tone that is:
@@ -291,6 +301,7 @@ That means pushes to `main` should be reflected on the public site automatically
 - Add a project: create a file in `_projects/`
 - Add a note: create a file in `_notes/`
 - Add a publication: create a file in `_publications/`
+- Add or replace a profile image: put the file in `assets/images/profile.jpg` or `assets/images/profile.png`
 - Add or replace a hosted PDF: put the file in `assets/files/`
 - Change navigation links: `_includes/header.html`
 - Change page layout: `_layouts/default.html`
