@@ -408,6 +408,54 @@ a:hover {
   color: var(--text);
 }
 
+.news-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 1rem;
+}
+
+.news-list li {
+  display: grid;
+  grid-template-columns: 108px minmax(0, 1fr);
+  gap: 0.85rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.news-list li:last-child {
+  border-bottom: 0;
+}
+
+.news-date {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.notes-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 1rem;
+}
+
+.notes-list li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 108px;
+  align-items: baseline;
+  gap: 0.85rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.notes-list li:last-child {
+  border-bottom: 0;
+}
+
+.note-date {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
 h1,
 h2,
 h3 {
@@ -517,6 +565,20 @@ blockquote {
   .site-map {
     grid-template-columns: 1fr;
     gap: 0.2rem;
+  }
+
+  .news-list li {
+    grid-template-columns: 1fr;
+    gap: 0.1rem;
+  }
+
+  .notes-list li {
+    grid-template-columns: 1fr;
+    gap: 0.1rem;
+  }
+
+  .note-date {
+    text-align: left;
   }
 
   h1 {

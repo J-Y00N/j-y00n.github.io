@@ -15,11 +15,11 @@ It serves as a public record of ideas, methods, and questions worth revisiting.
 
 {% assign notes = site.notes | sort: 'date' | reverse %}
 {% if notes.size > 0 %}
-<ul>
+<ul class="notes-list">
   {% for note in notes %}
     <li>
       <a href="{{ note.url | relative_url }}">{{ note.title }}</a>
-      {% if note.date %} · {{ note.date | date: '%Y-%m-%d' }}{% endif %}
+      {% if note.date %}<span class="note-date">{{ note.date | date: '%Y-%m-%d' }}</span>{% endif %}
     </li>
   {% endfor %}
 </ul>
