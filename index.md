@@ -73,17 +73,29 @@ title: Home
       <dd>Papers, reports, preprints, and future formal outputs.</dd>
 
       <dt><a href="{{ '/notes/' | relative_url }}">Notes</a></dt>
-      <dd>Reading notes, study logs, and short technical essays.</dd>
+      <dd>Updates, notes, and short writing on ongoing work and related issues.</dd>
 
       <dt><a href="{{ '/cv/' | relative_url }}">CV</a></dt>
       <dd>Education, experience, and a concise academic record.</dd>
     </dl>
 
-    <h2>Current Stage</h2>
-    <p>
-      This website is still under active construction. For now, it functions as a
-      clean public base for graduate application materials and early-stage academic
-      writing, with the goal of growing into a longer-term research homepage.
-    </p>
+    <h2>News</h2>
+    {% assign latest_notes = site.notes | sort: 'date' | reverse %}
+    {% if latest_notes.size > 0 %}
+    <ul class="news-list">
+      {% for note in latest_notes limit: 3 %}
+      <li>
+        <span class="news-date">{{ note.date | date: "%Y-%m-%d" }}</span>
+        <a href="{{ note.url | relative_url }}">{{ note.title }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+    <p><a href="{{ '/notes/' | relative_url }}">See all notes and updates</a></p>
+    {% else %}
+    <div class="empty-state-card">
+      <h3>Current Status</h3>
+      <p>No updates are listed yet.</p>
+    </div>
+    {% endif %}
   </div>
 </div>
