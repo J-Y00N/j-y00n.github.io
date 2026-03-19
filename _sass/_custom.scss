@@ -151,7 +151,7 @@ a:hover {
 
 .profile-intro {
   display: grid;
-  grid-template-columns: minmax(0, 1.9fr) minmax(220px, 0.95fr);
+  grid-template-columns: minmax(200px, 0.68fr) minmax(0, 2.1fr);
   gap: 1.5rem;
   align-items: start;
   margin-bottom: 2rem;
@@ -163,7 +163,7 @@ a:hover {
 
 .about-layout {
   display: grid;
-  grid-template-columns: minmax(220px, 0.8fr) minmax(0, 1.7fr);
+  grid-template-columns: minmax(200px, 0.68fr) minmax(0, 2.1fr);
   gap: 1.5rem;
   align-items: start;
 }
@@ -186,6 +186,8 @@ a:hover {
 .profile-aside {
   display: grid;
   gap: 1rem;
+  position: sticky;
+  top: 1.25rem;
 }
 
 .profile-photo-slot,
@@ -335,6 +337,10 @@ blockquote {
 
   .profile-intro {
     grid-template-columns: 1fr;
+  }
+
+  .profile-aside {
+    position: static;
   }
 
   .about-layout {
