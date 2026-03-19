@@ -190,7 +190,9 @@ a:hover {
 }
 
 .profile-photo-frame {
-  aspect-ratio: 4 / 5;
+  position: relative;
+  height: 0;
+  padding-top: 125%;
   overflow: hidden;
   border-radius: 0.55rem;
   width: 100%;
@@ -198,6 +200,8 @@ a:hover {
 
 .profile-photo-slot img,
 .profile-photo-frame img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -465,6 +469,10 @@ blockquote {
 
 .profile-photo-slot img,
 .profile-photo-frame img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   margin: 0;
   border: 0;
   border-radius: 0;
