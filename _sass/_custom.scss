@@ -161,24 +161,6 @@ a:hover {
   margin-bottom: 1rem;
 }
 
-.about-layout {
-  display: grid;
-  grid-template-columns: minmax(200px, 0.68fr) minmax(0, 2.1fr);
-  gap: 1.5rem;
-  align-items: start;
-}
-
-.about-sidebar {
-  display: grid;
-  gap: 1rem;
-  position: sticky;
-  top: 1.25rem;
-}
-
-.about-main {
-  min-width: 0;
-}
-
 .profile-copy > *:last-child {
   margin-bottom: 0;
 }
@@ -222,6 +204,15 @@ a:hover {
 .profile-photo-slot-small,
 .about-photo-slot {
   min-height: 220px;
+}
+
+.meta-list {
+  padding-left: 1.1rem;
+  margin-bottom: 0;
+}
+
+.meta-list li + li {
+  margin-top: 0.35rem;
 }
 
 .profile-links-card h2,
@@ -340,14 +331,6 @@ blockquote {
   }
 
   .profile-aside {
-    position: static;
-  }
-
-  .about-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .about-sidebar {
     position: static;
   }
 
