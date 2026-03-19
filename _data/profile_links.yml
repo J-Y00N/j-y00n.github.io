@@ -1,0 +1,15 @@
+- label: Email
+  url: "#"
+  icon: email
+
+- label: GitHub
+  url: "#"
+  icon: github
+
+- label: LinkedIn
+  url: "#"
+  icon: linkedin
+
+- label: Google Scholar
+  url: "#"
+  icon: scholar

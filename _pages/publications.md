@@ -2,21 +2,16 @@
 title: Publications
 permalink: /publications/
 ---
+<!--
+Internal editing note:
+- Keep this page public-facing and concise.
+- Publication entry guidance belongs primarily in README.md.
+- Prefer external links for formal outputs unless an internal detail page is clearly useful.
+-->
 # Publications
 
-This section is reserved for formal research outputs such as published papers, preprints, technical reports, theses, or other archival writing.
-
-At the moment, no formal publications are listed here yet.
-That is a normal state for an early-stage academic profile.
-
-When results become available, this page can grow into a clean bibliography-style record of:
-
-- journal articles
-- conference papers
-- preprints
-- technical reports
-- thesis-related writing
-- other formal research outputs
+This section is reserved for formal research outputs such as papers, preprints, reports, or thesis-related writing.
+For the moment, no formal publications are listed here yet.
 
 {% assign pubs = site.publications | sort: 'date' | reverse %}
 {% if pubs.size > 0 %}
@@ -35,33 +30,20 @@ When results become available, this page can grow into a clean bibliography-styl
   <p>No formal publications are listed yet.</p>
   <p>This page is intentionally kept in place so that future outputs can be added without changing the overall site structure.</p>
 </div>
+
+<h2>Future Entry Format</h2>
+<ul class="publication-sample-list">
+  <li>
+    J. Yoon, Coauthor A, and Coauthor B. "Paper Title." <em>Journal or Conference Name</em>, 2027.
+    <a href="#">Paper</a> <a href="#">Code</a>
+  </li>
+  <li>
+    J. Yoon and Coauthor A. "Preprint Title." <em>arXiv preprint</em>, 2027.
+    <a href="#">arXiv</a>
+  </li>
+  <li>
+    J. Yoon. "Master's Thesis Title." Master's thesis, [University Name], 2027.
+    <a href="#">PDF</a>
+  </li>
+</ul>
 {% endif %}
-
-## When This Section Becomes Active
-
-Once you have a formal output, prefer a reference-style entry with direct external links rather than a long internal write-up.
-
-Typical links may include:
-
-- publisher or journal page
-- DOI page
-- arXiv or other archive
-- OpenReview or conference page
-- code repository
-- poster or slides
-
-## Suggested Entry Format
-
-When creating publication entries, try to include:
-
-- title
-- date
-- venue
-- status
-- authors
-- abstract or summary
-- links to PDF, code, poster, or slides when available
-
-## Scope Note
-
-Projects, experiments, competition work, and independent technical builds usually belong in [Research]({{ '/research/' | relative_url }}) unless they have become formal written outputs.

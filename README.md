@@ -151,6 +151,13 @@ Suggested body structure:
 - current progress
 - links to code, slides, report, or data
 
+How this works in the site:
+
+- each file in `_projects/` becomes one research entry
+- `Research` automatically collects and lists those entries
+- card metadata such as `summary`, `status`, `date`, `thumbnail_url`, `repo_url`, and `report_url` can be managed in front matter
+- project images should live under `assets/images/research/`
+
 ### 4. Add a new note
 
 Create a new Markdown file inside `_notes/`.
@@ -199,6 +206,11 @@ Recommended content:
 - links to PDF, code, poster, or slides
 - optional note on status such as submitted, in preparation, or published
 
+Preferred linking rule:
+
+- if a paper, preprint, or report has a stable external page, link to that external source first
+- use an internal PDF only when you want to host a file directly on the site
+
 ### 6. Update the CV page
 
 File:
@@ -215,6 +227,22 @@ Typical sections include:
 - awards
 - skills
 - teaching or mentoring
+
+## PDF Assets
+
+Use `assets/files/` for PDFs that should be hosted directly in this site.
+
+Recommended examples:
+
+- `assets/files/cv.pdf`
+- `assets/files/thesis.pdf`
+- `assets/files/report-name.pdf`
+
+General rule:
+
+- use site-hosted PDFs for CVs, thesis files, or reports you want to serve directly
+- use external links for journal pages, arXiv, DOI pages, or conference proceedings when available
+- if a PDF belongs to a publication entry, link it from the publication item rather than duplicating file references across multiple pages
 
 ## Writing Style Guidelines
 
@@ -263,6 +291,7 @@ That means pushes to `main` should be reflected on the public site automatically
 - Add a project: create a file in `_projects/`
 - Add a note: create a file in `_notes/`
 - Add a publication: create a file in `_publications/`
+- Add or replace a hosted PDF: put the file in `assets/files/`
 - Change navigation links: `_includes/header.html`
 - Change page layout: `_layouts/default.html`
 - Change visual style: `_sass/_custom.scss`

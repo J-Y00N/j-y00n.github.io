@@ -249,6 +249,48 @@ a:hover {
   gap: 0.6rem;
 }
 
+.icon-link-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+  background: var(--accent-soft);
+  color: var(--accent);
+  text-decoration: none;
+  box-shadow: 0 8px 18px rgba(31, 36, 48, 0.04);
+}
+
+.icon-link:hover {
+  text-decoration: none;
+  filter: brightness(0.98);
+}
+
+.icon-link svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: currentColor;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .profile-pill {
   display: inline-flex;
   align-items: center;
@@ -333,6 +375,26 @@ a:hover {
 .muted-note {
   color: var(--muted);
   font-size: 0.92rem;
+}
+
+.site-map {
+  display: grid;
+  grid-template-columns: minmax(88px, 110px) minmax(0, 1fr);
+  gap: 0.5rem 1rem;
+  margin: 0 0 1rem;
+}
+
+.site-map dt,
+.site-map dd {
+  margin: 0;
+}
+
+.site-map dt {
+  font-weight: 600;
+}
+
+.site-map dd {
+  color: var(--text);
 }
 
 h1,
@@ -427,6 +489,11 @@ blockquote {
 
   .project-card-body {
     grid-template-columns: 1fr;
+  }
+
+  .site-map {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
   }
 
   h1 {
