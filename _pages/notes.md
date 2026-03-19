@@ -2,21 +2,16 @@
 title: Notes
 permalink: /notes/
 ---
+<!--
+Internal editing note:
+- Keep this page public-facing and concise.
+- Notes writing guidance belongs primarily in README.md.
+- Use this page as an index of public notes, not as a maintenance document.
+-->
 # Notes
 
-This section is for reading notes, study logs, technical memos, and short essays.
-Each entry is written as a separate Markdown file inside `_notes/`.
-
-The purpose of this page is not frequent posting for its own sake.
-It is to keep a public record of useful thinking, whether that comes from reading papers, working through methods, or reflecting on experiments.
-
-## Good note types
-
-- reading notes on papers or books
-- derivations or concept explanations
-- experiment logs and retrospectives
-- technical memos for future reference
-- short essays on research direction or methodology
+This section collects reading notes, study logs, technical memos, and short essays.
+It serves as a public record of ideas, methods, and questions worth revisiting.
 
 {% assign notes = site.notes | sort: 'date' | reverse %}
 {% if notes.size > 0 %}
@@ -29,10 +24,9 @@ It is to keep a public record of useful thinking, whether that comes from readin
   {% endfor %}
 </ul>
 {% else %}
-No notes listed yet.
+<div class="empty-state-card">
+  <h2>Current Status</h2>
+  <p>No notes are listed yet.</p>
+  <p>This page will gradually collect reading notes, technical memos, and short reflections as they are written.</p>
+</div>
 {% endif %}
-
-## Writing Guideline
-
-Notes do not need to be polished like publications.
-They should still be readable, specific, and worth revisiting later.

@@ -2,15 +2,13 @@
 title: About
 permalink: /about/
 ---
+<!--
+Internal editing note:
+- Keep this page public-facing and narrative-driven.
+- Replace placeholders with real text over time, but avoid exposing writing prompts to visitors.
+- Maintenance guidance belongs primarily in README.md.
+-->
 ## About Me
-
-This page is intended to read like a clean single-column academic statement.
-Unlike the home page, it does not need profile cards, contact blocks, or sidebar elements.
-Its job is to provide a slightly fuller narrative about background, motivation, and current direction.
-
-## Fill-In Template
-
-Use the prompts below when you are ready to replace this draft text.
 
 ### Background
 
@@ -34,18 +32,3 @@ The exact graduate label may still evolve, but the underlying motivation is stab
 - `[Research interest 3]`
 - `[Research interest 4]`
 - `[Research interest 5]`
-
-## Possible Supporting Details
-
-If useful later, this page can also briefly mention:
-
-- prior degrees or current program
-- recurring methods you use
-- application direction or target research communities
-- preferred problem domains
-- a sentence about why the site exists
-
-## This Website
-
-This site is designed to stay simple to maintain and easy to grow over time.
-Most content can be updated by editing Markdown files, which makes it straightforward to add projects, notes, publications, and future academic materials without changing the site structure itself.

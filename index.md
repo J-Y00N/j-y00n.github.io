@@ -4,22 +4,21 @@ title: Home
 <div class="profile-intro">
   <aside class="profile-aside">
     <div class="profile-photo-slot">
-      Optional profile photo
-      <span>Add an image later, for example `assets/images/profile.jpg`</span>
+      `[Profile photo]`
     </div>
     <div class="profile-links-card">
       <h2>Profile Links</h2>
-      <p class="muted-note">Replace `#` with real links later.</p>
-      <div class="profile-link-pills">
-        <a class="profile-pill" href="#">Email</a>
-        <a class="profile-pill" href="#">GitHub</a>
-        <a class="profile-pill" href="#">LinkedIn</a>
-        <a class="profile-pill" href="#">Scholar</a>
+      <div class="icon-link-grid">
+        {% for link in site.data.profile_links %}
+        <a class="icon-link" href="{{ link.url }}" aria-label="{{ link.label }}">
+          {% include profile-link-icon.html icon=link.icon %}
+          <span class="sr-only">{{ link.label }}</span>
+        </a>
+        {% endfor %}
       </div>
     </div>
     <div class="profile-links-card">
       <h2>Site Info</h2>
-      <p class="muted-note">Optional metadata can live here later.</p>
       <div class="meta-stack">
         <p><span>Status</span><code>[graduate applicant / researcher / student]</code></p>
         <p><span>Base</span><code>[institution or city]</code></p>
@@ -30,8 +29,6 @@ title: Home
   </aside>
   <div class="profile-copy">
     <h2>J. Yoon</h2>
-
-    <!-- Replace the paragraphs below with a short real introduction once ready. -->
     <p>
       This website is a lightweight academic profile for graduate-school preparation,
       research documentation, and public technical writing. My current direction
@@ -45,8 +42,7 @@ title: Home
       projects, notes, and application materials.
     </p>
 
-    <h2>Draft Intro Template</h2>
-    <p>Use the space below later for a more personal 2-4 sentence introduction.</p>
+    <h2>Short Introduction</h2>
     <ul>
       <li>I am currently <code>[current status: undergraduate / graduate student / researcher / applicant]</code> at <code>[institution or context]</code>.</li>
       <li>My interests are centered on <code>[2-4 fields or themes]</code>.</li>
@@ -64,13 +60,22 @@ title: Home
     </ul>
 
     <h2>On This Site</h2>
-    <ul>
-      <li><a href="{{ '/about/' | relative_url }}">About</a> for a fuller narrative statement and academic background</li>
-      <li><a href="{{ '/research/' | relative_url }}">Research</a> for projects, experiments, and ongoing work</li>
-      <li><a href="{{ '/publications/' | relative_url }}">Publications</a> for papers, reports, preprints, and manuscripts</li>
-      <li><a href="{{ '/notes/' | relative_url }}">Notes</a> for reading notes, study logs, and short technical essays</li>
-      <li><a href="{{ '/cv/' | relative_url }}">CV</a> for education, experience, and a downloadable academic CV</li>
-    </ul>
+    <dl class="site-map">
+      <dt><a href="{{ '/about/' | relative_url }}">About</a></dt>
+      <dd>A fuller narrative statement and academic background.</dd>
+
+      <dt><a href="{{ '/research/' | relative_url }}">Research</a></dt>
+      <dd>Projects, experiments, and research-oriented technical work.</dd>
+
+      <dt><a href="{{ '/publications/' | relative_url }}">Publications</a></dt>
+      <dd>Papers, reports, preprints, and future formal outputs.</dd>
+
+      <dt><a href="{{ '/notes/' | relative_url }}">Notes</a></dt>
+      <dd>Reading notes, study logs, and short technical essays.</dd>
+
+      <dt><a href="{{ '/cv/' | relative_url }}">CV</a></dt>
+      <dd>Education, experience, and a concise academic record.</dd>
+    </dl>
 
     <h2>Current Stage</h2>
     <p>
@@ -78,12 +83,5 @@ title: Home
       clean public base for graduate application materials and early-stage academic
       writing, with the goal of growing into a longer-term research homepage.
     </p>
-
-    <h2>Optional Short Status Line</h2>
-    <p>You can replace the paragraph above later with one compact line such as:</p>
-    <ul>
-      <li><code>I am currently preparing graduate applications in [field(s)] while building research projects in [area(s)].</code></li>
-      <li><code>This site is gradually evolving from an application profile into a longer-term academic homepage.</code></li>
-    </ul>
   </div>
 </div>

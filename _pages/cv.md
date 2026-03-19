@@ -2,30 +2,23 @@
 title: CV
 permalink: /cv/
 ---
-## CV
+<!--
+Internal editing note:
+- Keep this page concise and visitor-facing.
+- Placeholder values can remain until real details are ready.
+- Maintenance guidance belongs primarily in README.md.
+-->
+## Curriculum Vitae
 
 This page is intended to function as a concise web CV.
-It should stay readable on its own, even before a formal PDF CV is finalized.
-
-<div class="cv-download-card">
-  <h2>CV Download</h2>
-  <p>Add a PDF later when ready.</p>
-  <p><a class="profile-pill" href="#">Download CV PDF</a></p>
-  <p class="muted-note">Recommended future path: <code>/assets/files/cv.pdf</code></p>
-</div>
-
-## Fill-In Template
-
-You can gradually replace the placeholders below with real items.
-Keep each section short and link outward when details belong on dedicated pages.
 
 ## Contact
 
 - Name: `[Your name]`
 - Email: `[public academic email if desired]`
 - GitHub: `[link]`
-- Google Scholar: `[link if available]`
-- CV PDF: `[link if available]`
+- Google Scholar: `[optional link]`
+- CV PDF: `[optional link]`
 
 ## Education
 
@@ -67,8 +60,3 @@ Keep each section short and link outward when details belong on dedicated pages.
 
 - `[TA / tutoring / mentoring / volunteer role]`, `[date range]`
 - `[Service item]`, `[date range]`
-
-## Maintenance Note
-
-Keep this page shorter than a full dossier.
-If a section becomes too detailed, link out to a project page, publication page, or PDF CV instead of making this page overly long.
