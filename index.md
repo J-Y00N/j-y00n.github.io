@@ -4,15 +4,6 @@ title: Home
 # J. Yoon
 
 <div class="profile-intro">
-  <div class="profile-copy">
-<!-- Replace the paragraphs below with a short real introduction once ready. -->
-
-This website is a lightweight academic profile for graduate-school preparation, research documentation, and public technical writing.
-My current direction remains intentionally open across statistics, applied mathematics, computational neuroscience, BCI, machine learning, and computational science.
-
-I am especially drawn to work that combines mathematical structure, empirical data, and scientific interpretation.
-Rather than presenting a fixed label too early, this site is meant to document how those interests develop through projects, notes, and application materials.
-  </div>
   <aside class="profile-aside">
     <div class="profile-photo-slot">
       Optional profile photo
@@ -29,6 +20,15 @@ Rather than presenting a fixed label too early, this site is meant to document h
       </div>
     </div>
   </aside>
+  <div class="profile-copy">
+<!-- Replace the paragraphs below with a short real introduction once ready. -->
+
+This website is a lightweight academic profile for graduate-school preparation, research documentation, and public technical writing.
+My current direction remains intentionally open across statistics, applied mathematics, computational neuroscience, BCI, machine learning, and computational science.
+
+I am especially drawn to work that combines mathematical structure, empirical data, and scientific interpretation.
+Rather than presenting a fixed label too early, this site is meant to document how those interests develop through projects, notes, and application materials.
+  </div>
 </div>
 
 ## Draft Intro Template
