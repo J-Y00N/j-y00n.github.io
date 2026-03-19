@@ -23,14 +23,29 @@ That is appropriate for the current stage of graduate preparation, as long as ea
 
 {% assign projects = site.projects | sort: 'date' | reverse %}
 {% if projects.size > 0 %}
-<ul>
+<div class="project-card-list">
   {% for project in projects %}
-    <li>
-      <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
-      {% if project.summary %} - {{ project.summary }}{% endif %}
-    </li>
+    <article class="project-card">
+      <p class="project-card-meta">
+        {% if project.status %}<span class="project-status">{{ project.status }}</span>{% endif %}
+        {% if project.area %}<span>{{ project.area }}</span>{% endif %}
+        {% if project.date %}<span>{{ project.date | date: '%Y-%m-%d' }}</span>{% endif %}
+      </p>
+      <h2 class="project-card-title">
+        <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
+      </h2>
+      {% if project.summary %}
+      <p class="project-card-summary">{{ project.summary }}</p>
+      {% endif %}
+      {% if project.repo_url or project.report_url %}
+      <p class="project-card-links">
+        {% if project.repo_url %}<a class="profile-pill" href="{{ project.repo_url }}">GitHub</a>{% endif %}
+        {% if project.report_url %}<a class="profile-pill" href="{{ project.report_url }}">Report</a>{% endif %}
+      </p>
+      {% endif %}
+    </article>
   {% endfor %}
-</ul>
+</div>
 {% else %}
 No projects listed yet.
 {% endif %}
