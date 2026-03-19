@@ -18,6 +18,8 @@ That is appropriate for the current stage of graduate preparation, as long as ea
 - model development and evaluation work
 - signal analysis or data-analysis pipelines
 - longer-term experiments that deserve documentation
+- competition entries with meaningful technical substance
+- personal research builds that are not formal publications
 
 {% assign projects = site.projects | sort: 'date' | reverse %}
 {% if projects.size > 0 %}
@@ -42,3 +44,8 @@ For each project page, prefer clear descriptions of:
 - the methods used
 - what was learned
 - links to code, reports, figures, or slides
+
+## Scope Note
+
+It is completely reasonable to list personal projects, competition submissions, and independent technical work here, especially before formal publications exist.
+The important thing is to present them honestly as projects or research builds rather than as published results.
