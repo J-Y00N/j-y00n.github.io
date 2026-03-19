@@ -73,7 +73,7 @@ title: Home
       <dd>Papers, reports, preprints, and future formal outputs.</dd>
 
       <dt><a href="{{ '/notes/' | relative_url }}">Notes</a></dt>
-      <dd>Updates, notes, and short writing on ongoing work and related issues.</dd>
+      <dd>Updates, notes, and short writing on ongoing work.</dd>
 
       <dt><a href="{{ '/cv/' | relative_url }}">CV</a></dt>
       <dd>Education, experience, and a concise academic record.</dd>
