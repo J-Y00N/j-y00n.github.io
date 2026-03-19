@@ -207,13 +207,22 @@ a:hover {
   min-height: 220px;
 }
 
-.meta-list {
-  padding-left: 1.1rem;
-  margin-bottom: 0;
+.meta-stack {
+  display: grid;
+  gap: 0.45rem;
 }
 
-.meta-list li + li {
-  margin-top: 0.35rem;
+.meta-stack p {
+  margin: 0;
+  display: grid;
+  gap: 0.2rem;
+}
+
+.meta-stack span {
+  color: var(--muted);
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 .profile-links-card h2,
@@ -270,6 +279,26 @@ a:hover {
   border-radius: 0.85rem;
   padding: 1.1rem 1.15rem;
   box-shadow: 0 12px 30px rgba(31, 36, 48, 0.05);
+}
+
+.project-card-body {
+  display: grid;
+  grid-template-columns: minmax(180px, 220px) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.project-card-media {
+  display: block;
+}
+
+.project-card-media img {
+  width: 100%;
+  margin: 0;
+}
+
+.project-card-copy {
+  min-width: 0;
 }
 
 .project-card-meta {
@@ -347,11 +376,30 @@ blockquote {
   color: var(--muted);
 }
 
+.page-content img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1rem auto 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background: var(--panel);
+  box-shadow: 0 12px 30px rgba(31, 36, 48, 0.05);
+}
+
+.page-content img + em {
+  display: block;
+  color: var(--muted);
+  font-size: 0.92rem;
+  text-align: center;
+}
+
 .site-footer {
   padding-top: 1.5rem;
   border-top: 1px solid var(--line);
   color: var(--muted);
   font-size: 0.92rem;
+  text-align: right;
 }
 
 @media (max-width: 700px) {
@@ -375,6 +423,10 @@ blockquote {
 
   .profile-aside {
     position: static;
+  }
+
+  .project-card-body {
+    grid-template-columns: 1fr;
   }
 
   h1 {

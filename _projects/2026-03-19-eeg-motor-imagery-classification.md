@@ -1,10 +1,12 @@
 ---
 title: "EEG Motor Imagery Classification"
-date: 2026-03-19
-summary: "A research-oriented EEG project comparing classical, geometric, and deep baselines for motor imagery classification under within-subject, LOSO, and transfer settings."
-status: Ongoing
+date: 2026-01-01
+summary: "An EEG motor imagery study comparing classical, geometric, and deep baselines across within-subject, LOSO, and transfer protocols."
+status: Completed
 area: "EEG / BCI / Machine Learning"
 repo_url: "https://github.com/J-Y00N/EEG-Motor-Imagery-Classification"
+report_url: "https://github.com/J-Y00N/EEG-Motor-Imagery-Classification/blob/main/docs/report.md"
+thumbnail_url: "/assets/images/research/eeg/evaluation-pipeline.png"
 ---
 ## Overview
 
@@ -24,17 +26,23 @@ It is not only about training a model, but about asking how different evaluation
 - Protocols: within-subject, LOSO, and cross-subject transfer
 - Baseline families: classical, Riemannian, and deep learning
 
+![EEG evaluation pipeline]({{ '/assets/images/research/eeg/evaluation-pipeline.png' | relative_url }})
+
+*Figure. Evaluation pipeline used to separate within-subject, LOSO, and cross-subject transfer settings under a shared preprocessing and baseline framework.*
+
 ## What I Focused On
 
-- building a cleaner and more reproducible EEG experimentation pipeline
-- keeping evaluation protocols explicitly separated
-- comparing classical and deep approaches under matched settings
-- exporting report-ready artifacts and analysis outputs
+- comparing how model rankings change across within-subject, LOSO, and transfer settings
+- examining how classical, Riemannian, and deep baselines differ once protocols are separated
+- treating protocol separation as part of the interpretation rather than mixing incompatible claims
+- checking whether EEGNet's transfer advantage remains stable under repeated-seed validation
 
 ## Current Notes
 
-This project is one of the strongest candidates for the main `Research` section because it aligns directly with my current interest in BCI, computational neuroscience, and machine learning for biosignals.
+The main result of the project is that model ranking is protocol-dependent.
+`FBCSP` is strongest in within-subject evaluation, while `EEGNet` is strongest in LOSO and transfer settings, with the Riemannian baseline remaining the strongest non-deep alternative in transfer analysis.
 
 ## Links
 
 - [GitHub Repository](https://github.com/J-Y00N/EEG-Motor-Imagery-Classification)
+- [Project Report](https://github.com/J-Y00N/EEG-Motor-Imagery-Classification/blob/main/docs/report.md)
