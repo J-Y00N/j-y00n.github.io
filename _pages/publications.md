@@ -4,17 +4,19 @@ permalink: /publications/
 ---
 # Publications
 
-Use this page for published papers, preprints, manuscripts in preparation, selected reports, or other writing that is strong enough to archive as a formal output.
-Each item is a separate Markdown file inside `_publications/`.
+This section is reserved for formal research outputs such as published papers, preprints, technical reports, theses, or other archival writing.
 
-At the current stage, it is completely reasonable for this section to include:
+At the moment, no formal publications are listed here yet.
+That is a normal state for an early-stage academic profile.
 
+When results become available, this page can grow into a clean bibliography-style record of:
+
+- journal articles
+- conference papers
 - preprints
-- workshop or class reports
-- technical manuscripts in preparation
-- serious independent write-ups
-
-The main standard is clarity about what the item is and what stage it is in.
+- technical reports
+- thesis-related writing
+- other formal research outputs
 
 {% assign pubs = site.publications | sort: 'date' | reverse %}
 {% if pubs.size > 0 %}
@@ -28,10 +30,27 @@ The main standard is clarity about what the item is and what stage it is in.
   {% endfor %}
 </ul>
 {% else %}
-No publications listed yet.
+<div class="empty-state-card">
+  <h2>Current Status</h2>
+  <p>No formal publications are listed yet.</p>
+  <p>This page is intentionally kept in place so that future outputs can be added without changing the overall site structure.</p>
+</div>
 {% endif %}
 
-## Recommended Metadata
+## When This Section Becomes Active
+
+Once you have a formal output, prefer a reference-style entry with direct external links rather than a long internal write-up.
+
+Typical links may include:
+
+- publisher or journal page
+- DOI page
+- arXiv or other archive
+- OpenReview or conference page
+- code repository
+- poster or slides
+
+## Suggested Entry Format
 
 When creating publication entries, try to include:
 
@@ -42,3 +61,7 @@ When creating publication entries, try to include:
 - authors
 - abstract or summary
 - links to PDF, code, poster, or slides when available
+
+## Scope Note
+
+Projects, experiments, competition work, and independent technical builds usually belong in [Research]({{ '/research/' | relative_url }}) unless they have become formal written outputs.
