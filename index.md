@@ -19,6 +19,16 @@ title: Home
         <a class="profile-pill" href="#">Scholar</a>
       </div>
     </div>
+    <div class="profile-links-card">
+      <h2>Site Info</h2>
+      <p class="muted-note">Optional metadata can live here later.</p>
+      <ul class="meta-list">
+        <li>Status: `[graduate applicant / researcher / student]`</li>
+        <li>Base: `[institution or city]`</li>
+        <li>Updated: `[YYYY-MM-DD]`</li>
+        <li>Visitors: `[optional later]`</li>
+      </ul>
+    </div>
   </aside>
   <div class="profile-copy">
 <!-- Replace the paragraphs below with a short real introduction once ready. -->
@@ -50,7 +60,7 @@ Use the space below later for a more personal 2-4 sentence introduction.
 
 ## On This Site
 
-- [About]({{ '/about/' | relative_url }}) for background, interests, and current direction
+- [About]({{ '/about/' | relative_url }}) for a fuller narrative statement and academic background
 - [Research]({{ '/research/' | relative_url }}) for projects, experiments, and ongoing work
 - [Publications]({{ '/publications/' | relative_url }}) for papers, reports, preprints, and manuscripts
 - [Notes]({{ '/notes/' | relative_url }}) for reading notes, study logs, and short technical essays
