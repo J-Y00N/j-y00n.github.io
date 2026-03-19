@@ -1,8 +1,6 @@
 ---
 title: Home
 ---
-# J. Yoon
-
 <div class="profile-intro">
   <aside class="profile-aside">
     <div class="profile-photo-slot">
@@ -31,6 +29,8 @@ title: Home
     </div>
   </aside>
   <div class="profile-copy">
+## J. Yoon
+
 <!-- Replace the paragraphs below with a short real introduction once ready. -->
 
 This website is a lightweight academic profile for graduate-school preparation, research documentation, and public technical writing.
@@ -38,8 +38,6 @@ My current direction remains intentionally open across statistics, applied mathe
 
 I am especially drawn to work that combines mathematical structure, empirical data, and scientific interpretation.
 Rather than presenting a fixed label too early, this site is meant to document how those interests develop through projects, notes, and application materials.
-  </div>
-</div>
 
 ## Draft Intro Template
 
@@ -77,3 +75,5 @@ You can replace the paragraph above later with one compact line such as:
 
 - `I am currently preparing graduate applications in [field(s)] while building research projects in [area(s)].`
 - `This site is gradually evolving from an application profile into a longer-term academic homepage.`
+  </div>
+</div>
