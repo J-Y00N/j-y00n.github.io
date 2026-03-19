@@ -5,7 +5,7 @@ title: Home
   <aside class="profile-aside">
     <div class="profile-photo-slot">
       <div class="profile-photo-frame">
-        <img src="{{ '/assets/images/profile.jpg' | relative_url }}" alt="Profile photo of J. Yoon">
+        <img src="{{ '/assets/images/profile.png' | relative_url }}" alt="Profile photo of J. Yoon">
       </div>
     </div>
     <div class="profile-links-card">
