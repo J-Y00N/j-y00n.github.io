@@ -28,7 +28,7 @@ title: Home
       </ul>
     </div>
   </aside>
-  <div class="profile-copy">
+  <div class="profile-copy" markdown="1">
 ## J. Yoon
 
 <!-- Replace the paragraphs below with a short real introduction once ready. -->
