@@ -1,4 +1,14 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-bundle exec jekyll serve --livereload
+args=(serve)
+args+=(--host "${JEKYLL_HOST:-127.0.0.1}")
+args+=(--port "${JEKYLL_PORT:-4000}")
+
+# Keep local preview stable by default. LiveReload can be enabled explicitly:
+#   JEKYLL_LIVERELOAD=1 ./bin/serve
+if [[ "${JEKYLL_LIVERELOAD:-0}" == "1" ]]; then
+  args+=(--livereload)
+fi
+
+bundle exec jekyll "${args[@]}"
