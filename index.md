@@ -80,12 +80,21 @@ title: Home
     </dl>
 
     <h2>News</h2>
+    {% assign news_notes = site.notes | where_exp: "note", "note.news == true" %}
+    {% if news_notes.size > 0 %}
+    {% assign latest_notes = news_notes | sort: 'date' | reverse %}
+    {% else %}
     {% assign latest_notes = site.notes | sort: 'date' | reverse %}
+    {% endif %}
     {% if latest_notes.size > 0 %}
     <ul class="news-list">
       {% for note in latest_notes limit: 3 %}
       <li>
+        {% if note.date %}
         <span class="news-date">{{ note.date | date: "%Y-%m-%d" }}</span>
+        {% else %}
+        <span class="news-date">Undated</span>
+        {% endif %}
         <a href="{{ note.url | relative_url }}">{{ note.title }}</a>
       </li>
       {% endfor %}

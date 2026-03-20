@@ -198,21 +198,6 @@ a:hover {
   width: 100%;
 }
 
-.profile-photo-slot img,
-.profile-photo-frame img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center center;
-  display: block;
-  margin: 0;
-  border: 0;
-  border-radius: 0;
-  box-shadow: none;
-}
-
 .profile-photo-slot-small,
 .about-photo-slot {
   min-height: 220px;
@@ -521,6 +506,9 @@ blockquote {
   inset: 0;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
   margin: 0;
   border: 0;
   border-radius: 0;
