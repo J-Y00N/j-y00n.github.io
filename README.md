@@ -172,6 +172,7 @@ Recommended front matter:
 ---
 title: "Note Title"
 date: 2026-03-19
+news: true
 ---
 ```
 
@@ -182,6 +183,12 @@ Good uses for notes:
 - experiment logs
 - short technical essays
 - application or research reflections
+
+Optional home-news marker:
+
+- set `news: true` on a note when you want it to appear in the homepage `News` section
+- homepage `News` shows the latest three marked notes by date
+- if no note is marked, homepage `News` falls back to recent notes
 
 ### 5. Add a new publication or report
 

@@ -1,6 +1,7 @@
 ---
 title: "Current Stage"
 date: 2026-03-20
+news: true
 ---
 ## Current Stage
 
