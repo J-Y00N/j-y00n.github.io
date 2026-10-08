@@ -1,13 +1,14 @@
 ---
 title: Notes
+description: "Reading notes, study logs, technical memos, and short essays."
 permalink: /notes/
 ---
-<!--
+{% comment %}
 Internal editing note:
 - Keep this page public-facing and concise.
 - Notes writing guidance belongs primarily in README.md.
 - Use this page as an index of public notes, not as a maintenance document.
--->
+{% endcomment %}
 # Notes
 
 This section collects reading notes, study logs, technical memos, and short essays.

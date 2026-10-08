@@ -1,13 +1,14 @@
 ---
 title: About
+description: "Background, research motivation, and research interests of J. Yoon."
 permalink: /about/
 ---
-<!--
+{% comment %}
 Internal editing note:
 - Keep this page public-facing and narrative-driven.
 - Replace placeholders with real text over time, but avoid exposing writing prompts to visitors.
 - Maintenance guidance belongs primarily in README.md.
--->
+{% endcomment %}
 ## About Me
 
 ### Background

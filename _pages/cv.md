@@ -1,13 +1,14 @@
 ---
 title: CV
+description: "Curriculum vitae of J. Yoon: education, research experience, projects, publications, and skills."
 permalink: /cv/
 ---
-<!--
+{% comment %}
 Internal editing note:
 - Keep this page concise and visitor-facing.
 - Placeholder values can remain until real details are ready.
 - Maintenance guidance belongs primarily in README.md.
--->
+{% endcomment %}
 ## Curriculum Vitae
 
 This page is intended to function as a concise web CV.

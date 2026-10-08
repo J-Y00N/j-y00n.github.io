@@ -326,6 +326,10 @@ a:hover {
   align-items: start;
 }
 
+.project-card-body-no-media {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 .project-card-media {
   display: block;
 }

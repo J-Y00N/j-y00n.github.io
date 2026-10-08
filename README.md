@@ -99,6 +99,9 @@ Use this when:
 
 ## Content Editing Guide
 
+Each content file can set `description` in its front matter.
+It is used for search results and link previews.
+
 ### 1. Edit the home page
 
 File:
@@ -123,6 +126,7 @@ Files:
 - `_pages/notes.md`
 
 Use fixed pages for top-level sections that should always exist in navigation.
+A new page in `_pages/` gets the URL `/file-name/` unless it sets its own `permalink`.
 
 ### 3. Add a new project
 
@@ -138,7 +142,7 @@ Recommended front matter:
 ---
 title: "Project Title"
 date: 2026-03-19
-summary: "One-line summary shown in the project list."
+description: "One-line summary shown in the project list."
 status: Ongoing
 ---
 ```
@@ -155,7 +159,7 @@ How this works in the site:
 
 - each file in `_projects/` becomes one research entry
 - `Research` automatically collects and lists those entries
-- card metadata such as `summary`, `status`, `date`, `thumbnail_url`, `repo_url`, and `report_url` can be managed in front matter
+- card metadata such as `description`, `status`, `date`, `thumbnail_url`, `repo_url`, and `report_url` can be managed in front matter
 - project images should live under `assets/images/research/`
 
 ### 4. Add a new note
@@ -172,6 +176,7 @@ Recommended front matter:
 ---
 title: "Note Title"
 date: 2026-03-19
+description: "One-line summary."
 news: true
 ---
 ```
@@ -200,6 +205,7 @@ Recommended front matter:
 ---
 title: "Paper Title"
 date: 2026-03-19
+description: "One-line summary."
 venue: "Preprint"
 status: Draft
 permalink: /publications/paper-title/
@@ -217,6 +223,14 @@ Preferred linking rule:
 
 - if a paper, preprint, or report has a stable external page, link to that external source first
 - use an internal PDF only when you want to host a file directly on the site
+
+Recommended citation format:
+
+```
+J. Yoon, Coauthor A, and Coauthor B. "Paper Title." Journal or Conference Name, 2027. [Paper] [Code]
+J. Yoon and Coauthor A. "Preprint Title." arXiv preprint, 2027. [arXiv]
+J. Yoon. "Master's Thesis Title." Master's thesis, [University Name], 2027. [PDF]
+```
 
 ### 6. Update the CV page
 
@@ -260,6 +274,7 @@ General rule:
 - keep the main profile image at a stable top-level path under `assets/images/`
 - keep research figures under `assets/images/research/`
 - avoid mixing profile images with project-specific figures
+- if the image file name changes, also update `index.md` and the default `image` in `_config.yml`
 
 ## Writing Style Guidelines
 
@@ -366,6 +381,7 @@ Check:
 - that the file has YAML front matter
 - that the file is in the correct collection directory
 - that `_config.yml` still lists the collection
+- that `_config.yml` still lists `_pages` under `include`
 - that the file name and permalink do not conflict with another page
 
 ## Future Extensions

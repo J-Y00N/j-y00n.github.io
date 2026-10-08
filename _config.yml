@@ -1,4 +1,5 @@
 title: 'J. Yoon'
+author: 'J. Yoon'
 description: 'Academic website for research interests, projects, notes, and application materials'
 url: 'https://j-y00n.github.io'
 baseurl: ''
@@ -7,6 +8,19 @@ timezone: 'Asia/Seoul'
 markdown: kramdown
 permalink: pretty
 
+# Turn off the default GitHub Pages theme (Primer). This site has its own layouts and styles.
+theme: null
+
+# A custom exclude list replaces Jekyll's defaults, so Gemfile and vendor/ are listed here too.
+exclude:
+  - README.md
+  - LICENSE
+  - bin/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/
+
 sass:
   style: compressed
 
@@ -14,10 +28,19 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
 
+# jekyll-feed always builds a posts feed, even without _posts.
+# Move it to /feed/posts.xml so the notes feed can use /feed.xml.
+feed:
+  path: /feed/posts.xml
+  collections:
+    notes:
+      path: /feed.xml
+
+# _pages is a plain page folder. A collection named "pages" would hide site.pages in Liquid.
+include:
+  - _pages
+
 collections:
-  pages:
-    output: true
-    permalink: /:title/
   publications:
     output: true
     permalink: /publications/:name/
@@ -33,6 +56,14 @@ defaults:
       path: ''
     values:
       layout: default
+      image: /assets/images/profile.png
+      twitter:
+        card: summary
+  # Pages in _pages get /file-name/ URLs unless they set their own permalink.
+  - scope:
+      path: '_pages'
+    values:
+      permalink: /:basename/
   - scope:
       path: ''
       type: publications
