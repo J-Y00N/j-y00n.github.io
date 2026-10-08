@@ -1,7 +1,7 @@
 ---
 title: "ECG Arrhythmia Classification"
 date: 2025-01-01
-summary: "A five-class ECG arrhythmia classification study examining augmentation settings and class-imbalance behavior on MIT-BIH beat-level data."
+description: "A five-class ECG arrhythmia classification study examining augmentation settings and class-imbalance behavior on MIT-BIH beat-level data."
 status: Completed
 area: "ECG / Biomedical Signals / Deep Learning"
 repo_url: "https://github.com/J-Y00N/ECG-Arrhythmia-Classification-ResNet"

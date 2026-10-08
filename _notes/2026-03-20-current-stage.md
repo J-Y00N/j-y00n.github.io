@@ -1,6 +1,7 @@
 ---
 title: "Current Stage"
 date: 2026-03-20
+description: "This website is still under active construction and serves as a base for graduate application materials, academic writing, and research documentation."
 news: true
 ---
 ## Current Stage

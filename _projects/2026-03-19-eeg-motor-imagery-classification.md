@@ -1,7 +1,7 @@
 ---
 title: "EEG Motor Imagery Classification"
 date: 2026-01-01
-summary: "An EEG motor imagery study comparing classical, geometric, and deep baselines across within-subject, LOSO, and transfer protocols."
+description: "An EEG motor imagery study comparing classical, geometric, and deep baselines across within-subject, LOSO, and transfer protocols."
 status: Completed
 area: "EEG / BCI / Machine Learning"
 repo_url: "https://github.com/J-Y00N/EEG-Motor-Imagery-Classification"

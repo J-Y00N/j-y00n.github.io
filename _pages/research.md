@@ -1,13 +1,14 @@
 ---
 title: Research
+description: "Research-oriented projects in biosignals, machine learning, and related technical work."
 permalink: /research/
 ---
-<!--
+{% comment %}
 Internal editing note:
 - Keep this page visitor-facing and concise.
 - Project maintenance guidance lives primarily in README.md.
 - Add or update project entries in _projects/ and keep this page as a curated index.
--->
+{% endcomment %}
 # Research and Projects
 
 This section highlights current research-oriented projects in biosignals, machine learning, and related technical work.
@@ -18,7 +19,7 @@ It includes both independent research builds and longer-form experimental projec
 <div class="project-card-list">
   {% for project in projects %}
     <article class="project-card">
-      <div class="project-card-body">
+      <div class="project-card-body{% unless project.thumbnail_url %} project-card-body-no-media{% endunless %}">
         {% if project.thumbnail_url %}
         <a class="project-card-media" href="{{ project.url | relative_url }}">
           <img src="{{ project.thumbnail_url | relative_url }}" alt="{{ project.title }}">
@@ -33,8 +34,8 @@ It includes both independent research builds and longer-form experimental projec
           <h2 class="project-card-title">
             <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
           </h2>
-          {% if project.summary %}
-          <p class="project-card-summary">{{ project.summary }}</p>
+          {% if project.description %}
+          <p class="project-card-summary">{{ project.description }}</p>
           {% endif %}
           {% if project.repo_url or project.report_url %}
           <p class="project-card-links">
