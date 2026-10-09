@@ -2,24 +2,18 @@
 title: CV
 description: "Curriculum vitae of J. Yoon: education, research experience, projects, publications, and skills."
 permalink: /cv/
+heading: Curriculum Vitae
 ---
 {% comment %}
 Internal editing note:
 - Keep this page concise and visitor-facing.
 - Placeholder values can remain until real details are ready.
+- Contact, Selected Projects, and Publications are filled in automatically by the include lines below.
 - Maintenance guidance belongs primarily in README.md.
 {% endcomment %}
-## Curriculum Vitae
-
 This page is intended to function as a concise web CV.
 
-## Contact
-
-- Name: `[Your name]`
-- Email: `[public academic email if desired]`
-- GitHub: `[link]`
-- Google Scholar: `[optional link]`
-- CV PDF: `[optional link]`
+{% include cv-contact.html %}
 
 ## Education
 
@@ -34,16 +28,9 @@ This page is intended to function as a concise web CV.
 - `[Role or position]`, `[Lab / group / institution]`, `[date range]`
   Brief description: `[1-2 lines on topic, methods, or contribution]`
 
-## Selected Projects
+{% include cv-projects.html %}
 
-- `[Project title]` - `[one-line summary]`
-- `[Project title]` - `[one-line summary]`
-- `[Project title]` - `[one-line summary]`
-
-## Publications and Preprints
-
-- `[Authors]`, `"[Title],"` `[venue or status]`, `[year]`
-- `[Authors]`, `"[Title],"` `[venue or status]`, `[year]`
+{% include cv-publications.html %}
 
 ## Awards and Honors
 

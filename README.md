@@ -19,10 +19,13 @@ Most updates should require only Markdown edits, not template changes.
 
 - `index.md`: home page
 - `_pages/`: fixed pages such as About, CV, Research, Publications, and Notes
-- `_projects/`: one Markdown file per project or research entry
-- `_publications/`: one Markdown file per paper, report, or preprint
+- `_projects/`: one Markdown file per project, shown as a summary with links
+- `_publications/`: one Markdown file per paper, report, or preprint, shown the same way
 - `_notes/`: one Markdown file per note or short post
-- `_includes/`, `_layouts/`, `_sass/`: shared templates and styling
+- `_data/`: site data such as `profile_links.yml`
+- `_layouts/`: page templates (`default`, `home`, `page`, `note`, and the list pages `project-index`, `note-index`, `publication-index`)
+- `_includes/`: reusable fragments such as the header, footer, and summary cards
+- `_sass/`: styling
 - `bin/`: small helper scripts for setup, build, and local preview
 - `_site/`: generated output, never edit by hand
 
@@ -31,6 +34,7 @@ Most updates should require only Markdown edits, not template changes.
 Use Markdown for content and touch templates only when the site's structure or appearance really needs to change.
 
 - If you are adding or revising text, edit Markdown files
+- If you are changing contact links, edit `_data/profile_links.yml`
 - If you are changing navigation or reusable page fragments, edit `_includes/`
 - If you are changing the page skeleton, edit `_layouts/`
 - If you are changing fonts, spacing, color, or page styling, edit `_sass/`
@@ -99,8 +103,9 @@ Use this when:
 
 ## Content Editing Guide
 
-Each content file can set `description` in its front matter.
+Each page and note can set `description` in its front matter.
 It is used for search results and link previews.
+On a project or publication, `description` is the summary shown on the card and in the CV.
 
 ### 1. Edit the home page
 
@@ -112,8 +117,19 @@ Use this for the first impression of the site:
 
 - short self-positioning
 - broad research direction
-- links to the key sections
-- current stage or short status note
+- research interests
+
+Put the longer background and motivation in `_pages/about.md`.
+
+How this works in the site:
+
+- the body of `index.md` is plain Markdown and appears next to the profile photo
+- the name above it comes from `author` in `_config.yml`, or from `heading` in `index.md`
+- `photo` and `site_info` in its front matter fill the left column
+- `site_info` values accept inline Markdown such as a link
+- the `Updated` date in the left column is added automatically from the build date
+- `Selected Publications` and `Selected Projects` list entries with `featured: true`
+- `News` lists notes marked `news: true`
 
 ### 2. Edit fixed pages
 
@@ -128,6 +144,15 @@ Files:
 Use fixed pages for top-level sections that should always exist in navigation.
 A new page in `_pages/` gets the URL `/file-name/` unless it sets its own `permalink`.
 
+How this works in the site:
+
+- the heading at the top of the page comes from `heading`, or from `title` when `heading` is not set
+- `title` also names the browser tab and link previews
+- a new page does not join the menu by itself, so add its link in `_includes/header.html`
+- Research, Notes, and Publications list their entries through their layout, so their Markdown file holds only the intro text
+- keep the `layout:` line in `research.md`, `notes.md`, and `publications.md`, because it is what adds the list
+- write section headings with `##`, because the page title is already the top heading
+
 ### 3. Add a new project
 
 Create a new Markdown file inside `_projects/`.
@@ -135,6 +160,8 @@ Create a new Markdown file inside `_projects/`.
 Recommended naming pattern:
 
 - `YYYY-MM-DD-short-project-name.md`
+- `date` in the front matter sets the order of the list, newest first
+- the date in the file name is used only when `date` is left out
 
 Recommended front matter:
 
@@ -142,24 +169,34 @@ Recommended front matter:
 ---
 title: "Project Title"
 date: 2026-03-19
-description: "One-line summary shown in the project list."
+description: "One or two lines on the question and the main result."
 status: Ongoing
+featured: true
+area: "Field / Method"
+period: "2025.03 - 2025.06"
+thumbnail_url: "/assets/images/research/short-project-name/figure.png"
+links:
+  - label: GitHub
+    url: "https://github.com/..."
+  - label: Report
+    url: "https://..."
 ---
 ```
 
-Suggested body structure:
-
-- overview
-- motivation
-- methods
-- current progress
-- links to code, slides, report, or data
-
 How this works in the site:
 
-- each file in `_projects/` becomes one research entry
-- `Research` automatically collects and lists those entries
-- card metadata such as `description`, `status`, `date`, `thumbnail_url`, `repo_url`, and `report_url` can be managed in front matter
+- each project is shown as a summary card on `Research`, not as a page of its own
+- keep the details on the linked pages, such as a repository, report, paper, or blog post
+- the body below the front matter is not published, so leave it empty
+- `links` takes any address, for example GitHub, Hugging Face, a personal blog, a Notion page, or a lab or company post
+- the label is free text, such as `Code`, `Model`, `Demo`, `Blog`, or `Slides`
+- the first link also opens from the title and the thumbnail, so put the main destination first
+- a link whose `url` is `"#"` or empty is skipped, and an entry without links shows its title as plain text
+- a link to a file under `/assets/` shows even before the file exists, so add the file first
+- a file hosted on this site can be linked as `/assets/files/name.pdf`
+- `period` is optional, and the year of `date` is shown when it is missing
+- `thumbnail_url` is optional, and the card uses the full width without it
+- `featured: true` shows the project under `Selected Projects` on the home page and the CV
 - project images should live under `assets/images/research/`
 
 ### 4. Add a new note
@@ -169,6 +206,10 @@ Create a new Markdown file inside `_notes/`.
 Recommended naming pattern:
 
 - `YYYY-MM-DD-short-note-title.md`
+- the URL drops the date: `2026-03-19-short-note-title.md` becomes `/notes/short-note-title/`
+- keep the part after the date unique, because two notes with the same name after the date share one URL, one of them is lost, and the build gives no warning
+- start every file name with its date, or set `date` in the front matter, because a note without a date shows no date and goes to the end of the list
+- a note dated in the future is published right away, so the date does not schedule it
 
 Recommended front matter:
 
@@ -180,6 +221,9 @@ description: "One-line summary."
 news: true
 ---
 ```
+
+Notes are the only entries with a page of their own, so long-form writing belongs here.
+Images use plain Markdown, for example `![Figure caption](/assets/images/notes/figure.png)`.
 
 Good uses for notes:
 
@@ -198,6 +242,13 @@ Optional home-news marker:
 ### 5. Add a new publication or report
 
 Create a new Markdown file inside `_publications/`.
+Publications work the same way as projects: a summary card with outside links.
+
+Recommended naming pattern:
+
+- `YYYY-MM-DD-short-paper-title.md`
+- `date` in the front matter sets the order of the list, newest first
+- the date in the file name is used only when `date` is left out
 
 Recommended front matter:
 
@@ -205,19 +256,29 @@ Recommended front matter:
 ---
 title: "Paper Title"
 date: 2026-03-19
-description: "One-line summary."
+description: "One or two lines on the contribution."
+authors: "J. Yoon, Coauthor A, and Coauthor B"
 venue: "Preprint"
 status: Draft
-permalink: /publications/paper-title/
+featured: true
+thumbnail_url: "/assets/images/publications/paper-title.png"
+links:
+  - label: arXiv
+    url: "https://arxiv.org/abs/..."
+  - label: Code
+    url: "https://github.com/..."
+  - label: PDF
+    url: /assets/files/paper-title.pdf
 ---
 ```
 
-Recommended content:
+How this works in the site:
 
-- authors
-- abstract or summary
-- links to PDF, code, poster, or slides
-- optional note on status such as submitted, in preparation, or published
+- `Publications` shows each entry as a summary card, the same as `Research`
+- the body below the front matter is not published, so keep the abstract on the linked page
+- `links` follows the same rules as for projects, and the first link opens from the title
+- `featured: true` shows the entry under `Selected Publications` on the home page
+- the CV lists every publication in the citation format below, built from `authors`, `title`, `venue`, `date`, and `status`
 
 Preferred linking rule:
 
@@ -249,6 +310,50 @@ Typical sections include:
 - skills
 - teaching or mentoring
 
+How this works in the site:
+
+- write education, research experience, awards, skills, and teaching as Markdown
+- three include lines fill in sections automatically, so move a line to change where its section appears
+  - `{% include cv-contact.html %}`: the name from `author` in `_config.yml`, the visible contact links, and a download button for the `cv` entry
+  - `{% include cv-projects.html %}`: projects with `featured: true`
+  - `{% include cv-publications.html %}`: every entry in `_publications/`
+- `Selected Projects` and `Publications and Preprints` are left out while they have nothing to show
+
+### 7. Update profile and contact links
+
+File:
+
+- `_data/profile_links.yml`
+
+How this works in the site:
+
+- the same list feeds the home page icons, the footer, and the CV contact section
+- a link whose `url` is `"#"` or empty stays hidden until a real address is filled in
+- use `mailto:name@example.com` for the email entry
+- use a full address such as `https://...`, or a site path that starts with `/`
+- a link to a file under `/assets/` appears only once that file exists, so the `CV (PDF)` entry appears once `assets/files/cv.pdf` is added
+- `icon` takes `email`, `github`, `linkedin`, `scholar`, or `cv`, and any other value shows a plain dot
+- the entry with `icon: cv` becomes the download button on the CV page instead of a contact line
+- add a new icon in `_includes/profile-link-icon.html`
+
+### 8. Keep an old address working
+
+Files:
+
+- `_pages/research.md`
+- `_notes/2026-03-19-welcome.md`
+- `_notes/2026-03-20-current-stage.md`
+
+How this works in the site:
+
+- `redirect_from` in front matter lists old addresses that forward to that page
+- `_pages/research.md` forwards the old project pages under `/projects/` to `/research/`
+- each note forwards its old dated address, such as `/notes/2026-03-19-welcome/`, to its current one
+- keep these lines, because removing one breaks links that were already shared
+- when you rename a page or a note, add its old address under `redirect_from`, with the trailing slash
+- projects and publications have no page of their own, so put their old addresses on `_pages/research.md` or `_pages/publications.md`
+- do not copy `redirect_from` into a new note, because the old address would then point to the new note
+
 ## PDF Assets
 
 Use `assets/files/` for PDFs that should be hosted directly in this site.
@@ -263,7 +368,7 @@ General rule:
 
 - use site-hosted PDFs for CVs, thesis files, or reports you want to serve directly
 - use external links for journal pages, arXiv, DOI pages, or conference proceedings when available
-- if a PDF belongs to a publication entry, link it from the publication item rather than duplicating file references across multiple pages
+- if a PDF belongs to a publication entry, add it to that entry's `links` rather than duplicating file references across multiple pages
 
 ## Profile Image
 
@@ -272,9 +377,9 @@ Use `assets/images/profile.jpg` or `assets/images/profile.png` for the main prof
 General rule:
 
 - keep the main profile image at a stable top-level path under `assets/images/`
-- keep research figures under `assets/images/research/`
+- keep figures under `assets/images/research/`, `assets/images/publications/`, or `assets/images/notes/`
 - avoid mixing profile images with project-specific figures
-- if the image file name changes, also update `index.md` and the default `image` in `_config.yml`
+- if the image file name changes, also update `photo` in `index.md` and the default `image` in `_config.yml`
 
 ## Writing Style Guidelines
 
@@ -283,7 +388,7 @@ For this site, prefer a tone that is:
 - academically serious but not inflated
 - clear about uncertainty where plans are still evolving
 - specific about methods and interests
-- concise on landing pages and fuller on project pages
+- concise on landing pages and summary cards, and fuller in notes and on the linked pages
 
 Good principle:
 
@@ -296,7 +401,7 @@ Good principle:
 - Prefer adding content over adding new page types
 - Reuse the existing collections before inventing new structures
 - Keep the homepage concise
-- Put long-form detail into project, note, or publication pages
+- Put long-form detail into notes or into the pages that projects and publications link to
 - Favor plain Markdown and simple links over custom embedded components
 
 ## Deployment
@@ -319,14 +424,23 @@ That means pushes to `main` should be reflected on the public site automatically
 
 ## What to Edit for Common Tasks
 
-- Change biography text: `index.md` or `_pages/about.md`
+- Change the short introduction or research interests: `index.md`
+- Change the longer background: `_pages/about.md`
+- Change contact links: `_data/profile_links.yml`
 - Add a project: create a file in `_projects/`
 - Add a note: create a file in `_notes/`
 - Add a publication: create a file in `_publications/`
-- Add or replace a profile image: put the file in `assets/images/profile.jpg` or `assets/images/profile.png`
+- Replace the profile image: overwrite `assets/images/profile.png`, or add a new file and update `photo` in `index.md` and `image` in `_config.yml`
 - Add or replace a hosted PDF: put the file in `assets/files/`
 - Change navigation links: `_includes/header.html`
-- Change page layout: `_layouts/default.html`
+- Change the shared page frame: `_layouts/default.html`
+- Change how note pages look: `_layouts/note.html`
+- Change how the Research, Notes, or Publications lists look: `_layouts/project-index.html`, `_layouts/note-index.html`, `_layouts/publication-index.html`
+- Change the summary card for projects and publications: `_includes/entry-card.html` and `_includes/entry-links.html`
+- Change the footer: `_includes/footer.html`
+- Change the home page sections such as Selected Projects or News: `_layouts/home.html`
+- Change the automatic CV sections: `_includes/cv-contact.html`, `_includes/cv-projects.html`, `_includes/cv-publications.html`, `_includes/citation.html`
+- Show a project or publication on the home page: set `featured: true` in its front matter
 - Change visual style: `_sass/_custom.scss`
 - Change site-wide settings: `_config.yml`
 
@@ -382,17 +496,21 @@ Check:
 - that the file is in the correct collection directory
 - that `_config.yml` still lists the collection
 - that `_config.yml` still lists `_pages` under `include`
-- that the file name and permalink do not conflict with another page
+- that no other note has the same name after the date, since the note URL drops the date
+- for a project or publication, that it appears on `Research` or `Publications`, since it has no page of its own
+
+### A profile link or the CV PDF does not show
+
+Check:
+
+- that its `url` in `_data/profile_links.yml` is not `"#"` or empty
+- that a file under `/assets/` exists at exactly that path, including upper and lower case
 
 ## Future Extensions
 
 Possible additions later, only if actually needed:
 
-- downloadable CV PDF in `assets/files/`
-- profile photo or portrait
-- project thumbnails
 - blog-like tagging for notes
 - analytics or visitor metrics
-- contact links and social links
 
 Keep the current structure unless one of those additions clearly improves the site's real use.

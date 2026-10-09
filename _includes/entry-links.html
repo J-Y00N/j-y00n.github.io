@@ -1,0 +1,8 @@
+{% if include.links %}
+<p class="project-card-links">
+  {% for link in include.links %}
+  {% assign entry_link_url = link.url | strip %}
+  {% if entry_link_url != "" and entry_link_url != "#" %}<a class="profile-pill" href="{{ entry_link_url | relative_url | escape }}">{{ link.label | default: 'Link' | escape }}</a>{% endif %}
+  {% endfor %}
+</p>
+{% endif %}

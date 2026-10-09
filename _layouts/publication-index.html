@@ -1,0 +1,18 @@
+---
+layout: page
+---
+{{ content }}
+{% assign publications = site.publications | sort: 'date' | reverse %}
+{% if publications.size > 0 %}
+<div class="project-card-list">
+  {% for publication in publications %}
+  {% include entry-card.html entry=publication %}
+  {% endfor %}
+</div>
+{% else %}
+<div class="empty-state-card">
+  <h2>Current Status</h2>
+  <p>No formal publications are listed yet.</p>
+  <p>This page is intentionally kept in place so that future outputs can be added without changing the overall site structure.</p>
+</div>
+{% endif %}

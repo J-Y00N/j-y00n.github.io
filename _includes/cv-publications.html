@@ -1,0 +1,9 @@
+{%- assign cv_publications = site.publications | sort: "date" | reverse -%}
+{%- if cv_publications.size > 0 -%}
+<h2 id="publications-and-preprints">Publications and Preprints</h2>
+<ul class="publication-list">
+  {%- for publication in cv_publications %}
+  {% include citation.html entry=publication %}
+  {%- endfor %}
+</ul>
+{%- endif -%}

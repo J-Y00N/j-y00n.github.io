@@ -8,6 +8,9 @@ timezone: 'Asia/Seoul'
 markdown: kramdown
 permalink: pretty
 
+# Build entries dated in the future too, so list links never point to a missing page.
+future: true
+
 # Turn off the default GitHub Pages theme (Primer). This site has its own layouts and styles.
 theme: null
 
@@ -27,6 +30,11 @@ sass:
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-redirect-from
+
+# Old addresses listed under redirect_from in front matter forward to their new page.
+redirect_from:
+  json: false
 
 # jekyll-feed always builds a posts feed, even without _posts.
 # Move it to /feed/posts.xml so the notes feed can use /feed.xml.
@@ -40,16 +48,16 @@ feed:
 include:
   - _pages
 
+# Projects and publications are summaries that link out, so they have no pages of their own.
+# Note URLs drop the date prefix of the file name: 2026-03-19-my-note.md -> /notes/my-note/
 collections:
   publications:
-    output: true
-    permalink: /publications/:name/
+    output: false
   projects:
-    output: true
-    permalink: /projects/:name/
+    output: false
   notes:
     output: true
-    permalink: /notes/:name/
+    permalink: /notes/:slug/
 
 defaults:
   - scope:
@@ -64,18 +72,9 @@ defaults:
       path: '_pages'
     values:
       permalink: /:basename/
-  - scope:
-      path: ''
-      type: publications
-    values:
-      section: publications
-  - scope:
-      path: ''
-      type: projects
-    values:
-      section: projects
+      layout: page
   - scope:
       path: ''
       type: notes
     values:
-      section: notes
+      layout: note
