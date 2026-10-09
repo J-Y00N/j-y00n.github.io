@@ -1,0 +1,91 @@
+---
+layout: default
+---
+{% include visible-profile-links.html %}
+<div class="profile-intro">
+  <aside class="profile-aside">
+    {% if page.photo %}
+    <div class="profile-photo-slot">
+      <div class="profile-photo-frame">
+        <img src="{{ page.photo | relative_url }}" alt="Profile photo of {{ site.author | escape }}">
+      </div>
+    </div>
+    {% endif %}
+    {% if visible_profile_links.size > 0 %}
+    <div class="profile-links-card">
+      <h2>Profile Links</h2>
+      <div class="icon-link-grid">
+        {% for link in visible_profile_links %}
+        <a class="icon-link" href="{{ link.url | strip | relative_url | escape }}" aria-label="{{ link.label | escape }}">
+          {% include profile-link-icon.html icon=link.icon %}
+          <span class="sr-only">{{ link.label | escape }}</span>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+    <div class="profile-links-card">
+      <h2>Site Info</h2>
+      <div class="meta-stack">
+        {% for item in page.site_info %}
+        <p><span class="meta-label">{{ item.label }}</span><span class="meta-value">{{ item.value | markdownify | remove: '<p>' | remove: '</p>' | strip }}</span></p>
+        {% endfor %}
+        <p><span class="meta-label">Updated</span><span class="meta-value">{{ site.time | date: '%Y-%m-%d' }}</span></p>
+      </div>
+    </div>
+  </aside>
+  <div class="profile-copy">
+    <h1 class="profile-name">{{ page.heading | default: site.author }}</h1>
+    {{ content }}
+
+    {% assign featured_publications = site.publications | where: "featured", true | sort: 'date' | reverse %}
+    {% if featured_publications.size > 0 %}
+    <h2>Selected Publications</h2>
+    <div class="project-card-list">
+      {% for publication in featured_publications %}
+      {% include entry-card.html entry=publication heading='h3' %}
+      {% endfor %}
+    </div>
+    <p class="section-more"><a href="{{ '/publications/' | relative_url }}">See all publications</a></p>
+    {% endif %}
+
+    {% assign featured_projects = site.projects | where: "featured", true | sort: 'date' | reverse %}
+    {% if featured_projects.size > 0 %}
+    <h2>Selected Projects</h2>
+    <div class="project-card-list">
+      {% for project in featured_projects %}
+      {% include entry-card.html entry=project heading='h3' %}
+      {% endfor %}
+    </div>
+    <p class="section-more"><a href="{{ '/research/' | relative_url }}">See all research</a></p>
+    {% endif %}
+
+    <h2>News</h2>
+    {% assign news_notes = site.notes | where_exp: "note", "note.news == true" %}
+    {% if news_notes.size > 0 %}
+    {% assign latest_notes = news_notes | sort: 'date' | reverse %}
+    {% else %}
+    {% assign latest_notes = site.notes | sort: 'date' | reverse %}
+    {% endif %}
+    {% if latest_notes.size > 0 %}
+    <ul class="news-list">
+      {% for note in latest_notes limit: 3 %}
+      <li>
+        {% if note.date %}
+        <span class="news-date">{{ note.date | date: "%Y-%m-%d" }}</span>
+        {% else %}
+        <span class="news-date">Undated</span>
+        {% endif %}
+        <a href="{{ note.url | relative_url }}">{{ note.title | escape }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+    <p><a href="{{ '/notes/' | relative_url }}">See all notes and updates</a></p>
+    {% else %}
+    <div class="empty-state-card">
+      <h3>Current Status</h3>
+      <p>No updates are listed yet.</p>
+    </div>
+    {% endif %}
+  </div>
+</div>

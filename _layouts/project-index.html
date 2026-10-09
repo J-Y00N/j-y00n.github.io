@@ -1,0 +1,17 @@
+---
+layout: page
+---
+{{ content }}
+{% assign projects = site.projects | sort: 'date' | reverse %}
+{% if projects.size > 0 %}
+<div class="project-card-list">
+  {% for project in projects %}
+  {% include entry-card.html entry=project %}
+  {% endfor %}
+</div>
+{% else %}
+<div class="empty-state-card">
+  <h2>Current Status</h2>
+  <p>No projects are listed yet.</p>
+</div>
+{% endif %}

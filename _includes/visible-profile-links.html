@@ -1,0 +1,25 @@
+{% comment %}
+Sets visible_profile_links: entries of _data/profile_links.yml that have a real URL.
+Placeholder URLs ("#" or empty) are skipped.
+A link to a site file such as /assets/files/cv.pdf is skipped until that file exists.
+{% endcomment %}
+{%- assign visible_profile_links = "" | split: "" -%}
+{%- for link in site.data.profile_links -%}
+  {%- assign link_url = link.url | strip -%}
+  {%- if link_url != "" and link_url != "#" -%}
+    {%- assign link_path = link_url | split: "#" | first | split: "?" | first -%}
+    {%- assign link_start = link_path | slice: 0, 8 -%}
+    {%- if link_start == "/assets/" -%}
+      {%- assign link_file = site.static_files | where: "path", link_path | first -%}
+      {%- unless link_file -%}
+        {%- assign link_path_spaced = link_path | replace: "%20", " " -%}
+        {%- assign link_file = site.static_files | where: "path", link_path_spaced | first -%}
+      {%- endunless -%}
+      {%- if link_file -%}
+        {%- assign visible_profile_links = visible_profile_links | push: link -%}
+      {%- endif -%}
+    {%- else -%}
+      {%- assign visible_profile_links = visible_profile_links | push: link -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}

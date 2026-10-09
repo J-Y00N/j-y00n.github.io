@@ -1,0 +1,37 @@
+{% comment %}
+One project or publication shown as a summary card.
+The title and thumbnail open the first usable entry in `links`; every link is also shown as a button.
+{% endcomment %}
+{% assign card_heading = include.heading | default: 'h2' %}
+{% include entry-main-link.html links=include.entry.links %}
+{% assign card_link_url = entry_main_link.url | strip %}
+{% assign card_thumbnail = include.entry.thumbnail_url | strip %}
+<article class="project-card">
+  <div class="project-card-body{% if card_thumbnail == "" %} project-card-body-no-media{% endif %}">
+    {% if card_thumbnail != "" %}
+    {% if card_link_url != "" %}
+    <a class="project-card-media" href="{{ card_link_url | relative_url | escape }}">
+      <img src="{{ card_thumbnail | relative_url | escape }}" alt="{{ include.entry.title | escape }}">
+    </a>
+    {% else %}
+    <div class="project-card-media">
+      <img src="{{ card_thumbnail | relative_url | escape }}" alt="{{ include.entry.title | escape }}">
+    </div>
+    {% endif %}
+    {% endif %}
+    <div class="project-card-copy">
+      <p class="project-card-meta">
+        {% if include.entry.status %}<span class="project-status">{{ include.entry.status | escape }}</span>{% endif %}
+        {% if include.entry.venue %}<span><em>{{ include.entry.venue | escape }}</em></span>{% endif %}
+        {% if include.entry.area %}<span>{{ include.entry.area | escape }}</span>{% endif %}
+        {% if include.entry.period %}<span>{{ include.entry.period | escape }}</span>{% elsif include.entry.date %}<span>{{ include.entry.date | date: '%Y' }}</span>{% endif %}
+      </p>
+      <{{ card_heading }} class="project-card-title">
+        {% if card_link_url != "" %}<a href="{{ card_link_url | relative_url | escape }}">{{ include.entry.title | escape }}</a>{% else %}{{ include.entry.title | escape }}{% endif %}
+      </{{ card_heading }}>
+      {% if include.entry.authors %}<p class="entry-authors">{{ include.entry.authors | escape }}</p>{% endif %}
+      {% if include.entry.description %}<p class="project-card-summary">{{ include.entry.description | escape }}</p>{% endif %}
+      {% include entry-links.html links=include.entry.links %}
+    </div>
+  </div>
+</article>

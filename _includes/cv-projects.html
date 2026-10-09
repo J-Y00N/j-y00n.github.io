@@ -1,0 +1,11 @@
+{%- assign cv_projects = site.projects | where: "featured", true | sort: "date" | reverse -%}
+{%- if cv_projects.size > 0 -%}
+<h2 id="selected-projects">Selected Projects</h2>
+<ul class="cv-projects">
+  {%- for project in cv_projects %}
+  {%- include entry-main-link.html links=project.links %}
+  {%- assign cv_project_url = entry_main_link.url | strip %}
+  <li>{% if cv_project_url != "" %}<a href="{{ cv_project_url | relative_url | escape }}">{{ project.title | escape }}</a>{% else %}{{ project.title | escape }}{% endif %}{% if project.description %} - {{ project.description | escape }}{% endif %}</li>
+  {%- endfor %}
+</ul>
+{%- endif -%}

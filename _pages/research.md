@@ -2,52 +2,18 @@
 title: Research
 description: "Research-oriented projects in biosignals, machine learning, and related technical work."
 permalink: /research/
+layout: project-index
+heading: Research and Projects
+redirect_from:
+  - /projects/2026-03-19-ecg-arrhythmia-classification/
+  - /projects/2026-03-19-eeg-motor-imagery-classification/
 ---
 {% comment %}
 Internal editing note:
 - Keep this page visitor-facing and concise.
 - Project maintenance guidance lives primarily in README.md.
-- Add or update project entries in _projects/ and keep this page as a curated index.
+- Add or update project entries in _projects/. This page lists them automatically.
+- The redirect_from lines keep the old project addresses working.
 {% endcomment %}
-# Research and Projects
-
 This section highlights current research-oriented projects in biosignals, machine learning, and related technical work.
 It includes both independent research builds and longer-form experimental projects that reflect my present academic direction.
-
-{% assign projects = site.projects | sort: 'date' | reverse %}
-{% if projects.size > 0 %}
-<div class="project-card-list">
-  {% for project in projects %}
-    <article class="project-card">
-      <div class="project-card-body{% unless project.thumbnail_url %} project-card-body-no-media{% endunless %}">
-        {% if project.thumbnail_url %}
-        <a class="project-card-media" href="{{ project.url | relative_url }}">
-          <img src="{{ project.thumbnail_url | relative_url }}" alt="{{ project.title }}">
-        </a>
-        {% endif %}
-        <div class="project-card-copy">
-          <p class="project-card-meta">
-            {% if project.status %}<span class="project-status">{{ project.status }}</span>{% endif %}
-            {% if project.area %}<span>{{ project.area }}</span>{% endif %}
-            {% if project.date %}<span>{{ project.date | date: '%Y-%m-%d' }}</span>{% endif %}
-          </p>
-          <h2 class="project-card-title">
-            <a href="{{ project.url | relative_url }}">{{ project.title }}</a>
-          </h2>
-          {% if project.description %}
-          <p class="project-card-summary">{{ project.description }}</p>
-          {% endif %}
-          {% if project.repo_url or project.report_url %}
-          <p class="project-card-links">
-            {% if project.repo_url %}<a class="profile-pill" href="{{ project.repo_url }}">GitHub</a>{% endif %}
-            {% if project.report_url %}<a class="profile-pill" href="{{ project.report_url }}">Report</a>{% endif %}
-          </p>
-          {% endif %}
-        </div>
-      </div>
-    </article>
-  {% endfor %}
-</div>
-{% else %}
-No projects listed yet.
-{% endif %}

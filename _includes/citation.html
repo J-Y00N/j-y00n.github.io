@@ -1,0 +1,17 @@
+{%- assign citation_authors = include.entry.authors | strip | escape -%}
+{%- assign citation_title = include.entry.title | strip | escape -%}
+{%- include entry-main-link.html links=include.entry.links -%}
+{%- assign citation_link_url = entry_main_link.url | strip -%}
+{%- assign authors_end = citation_authors | slice: -1 -%}
+{%- assign title_end = citation_title | slice: -1 -%}
+<li class="publication-item">
+  {% if citation_authors != "" %}{{ citation_authors }}{% unless authors_end == "." %}.{% endunless %}{% endif %}
+  "{% if citation_link_url != "" %}<a href="{{ citation_link_url | relative_url | escape }}">{{ citation_title }}</a>{% else %}{{ citation_title }}{% endif %}{% unless title_end == "." or title_end == "?" or title_end == "!" %}.{% endunless %}"
+  {% if include.entry.venue %}<em>{{ include.entry.venue | escape }}</em>{% if include.entry.date %},{% else %}.{% endif %}{% endif %}
+  {% if include.entry.date %}{{ include.entry.date | date: '%Y' }}.{% endif %}
+  {% if include.entry.status %}<span class="project-status">{{ include.entry.status | escape }}</span>{% endif %}
+  {% for link in include.entry.links %}
+  {% assign citation_extra_url = link.url | strip %}
+  {% if citation_extra_url != "" and citation_extra_url != "#" %}<a href="{{ citation_extra_url | relative_url | escape }}">[{{ link.label | default: 'Link' | escape }}]</a>{% endif %}
+  {% endfor %}
+</li>

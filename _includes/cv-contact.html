@@ -1,0 +1,14 @@
+{%- include visible-profile-links.html -%}
+{%- assign cv_pdf = visible_profile_links | where: "icon", "cv" | first -%}
+<h2 id="contact">Contact</h2>
+<ul class="cv-contact">
+  <li>Name: {{ site.author }}</li>
+  {%- for link in visible_profile_links %}
+  {%- unless link.icon == "cv" %}
+  <li>{{ link.label | escape }}: <a href="{{ link.url | strip | relative_url | escape }}">{{ link.url | strip | remove: "mailto:" | remove: "https://" | remove: "http://" | escape }}</a></li>
+  {%- endunless %}
+  {%- endfor %}
+</ul>
+{%- if cv_pdf %}
+<p class="cv-download"><a class="profile-pill" href="{{ cv_pdf.url | strip | relative_url | escape }}">Download CV (PDF)</a></p>
+{%- endif %}

@@ -1,3 +1,11 @@
 <footer class="site-footer">
+  {% include visible-profile-links.html %}
+  {% if visible_profile_links.size > 0 %}
+  <p class="footer-links">
+    {% for link in visible_profile_links %}
+    <a href="{{ link.url | strip | relative_url | escape }}">{{ link.label | escape }}</a>
+    {% endfor %}
+  </p>
+  {% endif %}
   <p>© {{ 'now' | date: '%Y' }} {{ site.title }}. Built with GitHub Pages and Jekyll.</p>
 </footer>

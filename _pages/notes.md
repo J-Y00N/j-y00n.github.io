@@ -2,6 +2,7 @@
 title: Notes
 description: "Reading notes, study logs, technical memos, and short essays."
 permalink: /notes/
+layout: note-index
 ---
 {% comment %}
 Internal editing note:
@@ -9,25 +10,5 @@ Internal editing note:
 - Notes writing guidance belongs primarily in README.md.
 - Use this page as an index of public notes, not as a maintenance document.
 {% endcomment %}
-# Notes
-
 This section collects reading notes, study logs, technical memos, and short essays.
 It serves as a public record of ideas, methods, and questions worth revisiting.
-
-{% assign notes = site.notes | sort: 'date' | reverse %}
-{% if notes.size > 0 %}
-<ul class="notes-list">
-  {% for note in notes %}
-    <li>
-      <a href="{{ note.url | relative_url }}">{{ note.title }}</a>
-      {% if note.date %}<span class="note-date">{{ note.date | date: '%Y-%m-%d' }}</span>{% endif %}
-    </li>
-  {% endfor %}
-</ul>
-{% else %}
-<div class="empty-state-card">
-  <h2>Current Status</h2>
-  <p>No notes are listed yet.</p>
-  <p>This page will gradually collect reading notes, technical memos, and short reflections as they are written.</p>
-</div>
-{% endif %}

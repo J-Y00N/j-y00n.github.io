@@ -13,3 +13,7 @@
 - label: Google Scholar
   url: "#"
   icon: scholar
+
+- label: CV (PDF)
+  url: /assets/files/cv.pdf
+  icon: cv

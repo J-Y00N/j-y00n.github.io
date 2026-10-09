@@ -3,9 +3,8 @@ title: "Current Stage"
 date: 2026-03-20
 description: "This website is still under active construction and serves as a base for graduate application materials, academic writing, and research documentation."
 news: true
+redirect_from: /notes/2026-03-20-current-stage/
 ---
-## Current Stage
-
 This website is still under active construction.
 For now, it serves as a clean public base for graduate application materials, early-stage academic writing, and research documentation.
 

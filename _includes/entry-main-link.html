@@ -1,0 +1,11 @@
+{% comment %}
+Sets entry_main_link: the first entry of include.links whose url is not empty or "#".
+{% endcomment %}
+{%- assign entry_main_link = nil -%}
+{%- for link in include.links -%}
+  {%- assign entry_link_url = link.url | strip -%}
+  {%- if entry_link_url != "" and entry_link_url != "#" -%}
+    {%- assign entry_main_link = link -%}
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}
