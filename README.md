@@ -53,7 +53,7 @@ This repository pins Ruby with `.ruby-version` and `.tool-versions`.
 - Docker would add more maintenance overhead than value for a small personal site
 - A Ruby version manager keeps the system Ruby out of the workflow
 
-## One-Time Setup
+## One-Time Setup (macOS)
 
 1. Install a Ruby version manager such as `rbenv`, `asdf`, or `mise`
 2. If you use `rbenv`, add `eval "$(rbenv init - zsh)"` to your shell startup file
@@ -63,6 +63,65 @@ This repository pins Ruby with `.ruby-version` and `.tool-versions`.
 6. Run `./bin/setup`
 
 If the repository is configured correctly, `ruby -v` should report the version from `.ruby-version`.
+
+## One-Time Setup (Windows with WSL2)
+
+On Windows, work inside WSL2 with Ubuntu.
+It is a real Linux environment, so the commands in this README work the same way as on macOS.
+
+1. In PowerShell as administrator, run `wsl --install -d Ubuntu`, restart, and create the Ubuntu user
+2. Install VS Code on Windows with the "Add to PATH" option, and add the `WSL` extension
+3. In the Ubuntu terminal, install the build tools:
+
+```bash
+sudo apt update
+sudo apt install -y git gh build-essential libssl-dev libyaml-dev zlib1g-dev libffi-dev
+```
+
+4. Install `rbenv` with `ruby-build`:
+
+```bash
+git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+echo 'eval "$(~/.rbenv/bin/rbenv init - bash)"' >> ~/.bashrc
+eval "$(~/.rbenv/bin/rbenv init - bash)"
+```
+
+5. Set the same commit name and email as on the other computer:
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your-id@users.noreply.github.com"
+```
+
+6. Clone into the Ubuntu home folder, not under `/mnt/c/`, then install the pinned Ruby and run the setup:
+
+```bash
+cd ~
+git clone https://github.com/J-Y00N/j-y00n.github.io.git
+cd j-y00n.github.io
+rbenv install
+./bin/setup
+code .
+```
+
+`rbenv install` with no version reads `.ruby-version`, so this step stays correct when the pinned Ruby changes.
+
+Notes:
+
+- `code .` opens the folder in VS Code on Windows while the terminal and Ruby run in Ubuntu
+- the local preview at `http://localhost:4000` opens in a Windows browser
+- if it does not open, run `JEKYLL_HOST=0.0.0.0 ./bin/serve` and open port 4000 at the address that `hostname -I` prints
+- before the first `git push`, run `gh auth login`, choose HTTPS, and let it authenticate Git
+
+## Working on Two Computers
+
+- start each session with `git pull`
+- end each session with `git push`, so the other computer can continue from there
+- keep one clone per computer, cloned from GitHub
+- do not copy the folder between computers or sync it through a cloud drive, because `vendor/bundle/` holds gems built for one system
+- run `./bin/setup` again after `Gemfile.lock` changes
+- `.gitattributes` keeps line endings as LF on every computer
 
 ## Daily Workflow
 
@@ -446,8 +505,10 @@ That means pushes to `main` should be reflected on the public site automatically
 
 ## Environment Note
 
-Do not rely on the macOS system Ruby for this project.
+Do not rely on the macOS system Ruby or the Ruby from `apt` for this project.
 Use the repository-pinned Ruby through `rbenv`, `asdf`, or `mise`, then run the helper scripts.
+`Gemfile.lock` uses `github-pages` 232, the version shown in the GitHub Pages build log.
+When the build log shows a newer version, run `bundle update github-pages`, then `./bin/build`, and commit `Gemfile.lock` if the build is clean.
 
 ## Troubleshooting
 
@@ -461,7 +522,7 @@ Symptoms:
 Check:
 
 - whether `rbenv` is installed
-- whether `eval "$(rbenv init - zsh)"` is in `~/.zshrc`
+- whether `eval "$(rbenv init - zsh)"` is in `~/.zshrc` on macOS, or `eval "$(~/.rbenv/bin/rbenv init - bash)"` is in `~/.bashrc` on WSL
 - whether you opened a fresh interactive shell
 - whether `.ruby-version` exists in the repository root
 
@@ -478,6 +539,9 @@ If that still fails, verify:
 - the correct Ruby version is active
 - network access to `rubygems.org` is available
 - `vendor/bundle/` is writable
+
+If it fails while compiling `nokogiri`, check that `PLATFORMS` in `Gemfile.lock` lists your system: `arm64-darwin` on macOS, `x86_64-linux` on WSL, or `aarch64-linux` on WSL with an ARM processor.
+Add a missing one with `bundle lock --add-platform <platform>`, then run `./bin/setup` again.
 
 ### The site builds locally but looks wrong
 

@@ -1,0 +1,12 @@
+# Keep LF line endings on every computer (macOS, Windows, WSL).
+* text=auto eol=lf
+
+# Binary files are never converted.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.pdf binary
+*.zip binary
