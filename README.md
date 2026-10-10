@@ -110,6 +110,9 @@ code .
 Notes:
 
 - `code .` opens the folder in VS Code on Windows while the terminal and Ruby run in Ubuntu
+- check that the far left of the VS Code status bar shows `WSL: Ubuntu`, and that a new VS Code terminal shows a prompt like `name@PC:~/j-y00n.github.io$`
+- if the terminal shows `PS ...>` instead, VS Code opened the folder from Windows: install the `WSL` extension, press F1, and run `WSL: Reopen Folder in WSL`
+- run the commands in this README in the Ubuntu terminal, not in PowerShell
 - the local preview at `http://localhost:4000` opens in a Windows browser
 - if it does not open, run `JEKYLL_HOST=0.0.0.0 ./bin/serve` and open port 4000 at the address that `hostname -I` prints
 - before the first `git push`, run `gh auth login`, choose HTTPS, and let it authenticate Git
@@ -539,6 +542,12 @@ If that still fails, verify:
 - the correct Ruby version is active
 - network access to `rubygems.org` is available
 - `vendor/bundle/` is writable
+
+The lines just above `An error occurred while installing` show the real cause.
+The full log is in the `gem_make.out` file that the error message names.
+
+If it fails while compiling `commonmarker` with `unknown type name 'bool'`, the lockfile has a `commonmarker` older than 0.23.12, which can fail to build with GCC 15 (Ubuntu 26.04 and later).
+Run `bundle lock --conservative --update commonmarker`, then `./bin/setup` again.
 
 If it fails while compiling `nokogiri`, check that `PLATFORMS` in `Gemfile.lock` lists your system: `arm64-darwin` on macOS, `x86_64-linux` on WSL, or `aarch64-linux` on WSL with an ARM processor.
 Add a missing one with `bundle lock --add-platform <platform>`, then run `./bin/setup` again.
