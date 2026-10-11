@@ -190,6 +190,7 @@ How this works in the site:
 - `photo` and `site_info` in its front matter fill the left column
 - `site_info` values accept inline Markdown such as a link
 - the `Updated` date in the left column is added automatically from the build date
+- the browser tab shows the site `title` from `_config.yml`, so leave `title:` out of `index.md` and start its body with a sentence, not a heading, because a heading on the first line would become the tab title
 - `Selected Publications` and `Selected Projects` list entries with `featured: true`
 - `News` lists notes marked `news: true`
 
@@ -202,6 +203,7 @@ Files:
 - `_pages/research.md`
 - `_pages/publications.md`
 - `_pages/notes.md`
+- `_pages/404.md`
 
 Use fixed pages for top-level sections that should always exist in navigation.
 A new page in `_pages/` gets the URL `/file-name/` unless it sets its own `permalink`.
@@ -214,6 +216,9 @@ How this works in the site:
 - Research, Notes, and Publications list their entries through their layout, so their Markdown file holds only the intro text
 - keep the `layout:` line in `research.md`, `notes.md`, and `publications.md`, because it is what adds the list
 - write section headings with `##`, because the page title is already the top heading
+- `_pages/404.md` is the page GitHub Pages shows for an address that does not exist
+- `sitemap.xml` and `robots.txt` are generated automatically at build time, so there is no file to edit for them
+- every page and note is listed in `sitemap.xml`, and `sitemap: false` in the front matter leaves a page out, as in `404.md`
 
 ### 3. Add a new project
 
@@ -258,6 +263,7 @@ How this works in the site:
 - a file hosted on this site can be linked as `/assets/files/name.pdf`
 - `period` is optional, and the year of `date` is shown when it is missing
 - `thumbnail_url` is optional, and the card uses the full width without it
+- a thumbnail of about 800 x 500 pixels (16:10) under about 60 KB stays sharp and loads quickly
 - `featured: true` shows the project under `Selected Projects` on the home page and the CV
 - project images should live under `assets/images/research/`
 
@@ -442,6 +448,8 @@ General rule:
 - keep figures under `assets/images/research/`, `assets/images/publications/`, or `assets/images/notes/`
 - avoid mixing profile images with project-specific figures
 - if the image file name changes, also update `photo` in `index.md` and the default `image` in `_config.yml`
+- use a portrait image of about 640 x 800 pixels (4:5), saved as JPEG or PNG under about 100 KB
+- keep it JPEG or PNG rather than WebP, because it is also the default `image` for link previews (`og:image`), and some sites do not show WebP there
 
 ## Writing Style Guidelines
 
@@ -551,6 +559,23 @@ Run `bundle lock --conservative --update commonmarker`, then `./bin/setup` again
 
 If it fails while compiling `nokogiri`, check that `PLATFORMS` in `Gemfile.lock` lists your system: `arm64-darwin` on macOS, `x86_64-linux` on WSL, or `aarch64-linux` on WSL with an ARM processor.
 Add a missing one with `bundle lock --add-platform <platform>`, then run `./bin/setup` again.
+
+### The build stops with a YAML error
+
+Symptoms:
+
+- `./bin/build` or `./bin/serve` shows `YAML Exception reading` with a file name, and the build stops
+- the public site does not change after a push
+
+A YAML error in the front matter of any file stops the whole build, so a half-broken site is never published.
+GitHub Pages keeps serving the previous version, and the same error shows in the `pages build and deployment` log under the repository's `Actions` tab.
+
+Check:
+
+- the front matter of the file named in the error, near the line number it gives
+- that every quote is closed, for example `title: "Note Title"`
+- that a value containing `: ` is wrapped in quotes
+- that indentation uses spaces, not tabs
 
 ### The site builds locally but looks wrong
 

@@ -1,6 +1,5 @@
 ---
 layout: home
-title: Home
 photo: /assets/images/profile.png
 site_info:
   - label: Status

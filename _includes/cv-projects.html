@@ -5,7 +5,7 @@
   {%- for project in cv_projects %}
   {%- include entry-main-link.html links=project.links %}
   {%- assign cv_project_url = entry_main_link.url | strip %}
-  <li>{% if cv_project_url != "" %}<a href="{{ cv_project_url | relative_url | escape }}">{{ project.title | escape }}</a>{% else %}{{ project.title | escape }}{% endif %}{% if project.description %} - {{ project.description | escape }}{% endif %}</li>
+  <li>{% if cv_project_url != "" %}<a href="{{ cv_project_url | relative_url | escape }}">{{ project.title | escape }}</a>{% else %}{{ project.title | escape }}{% endif %}{% if project.period %} ({{ project.period | escape }}){% elsif project.date %} ({{ project.date | date: "%Y" }}){% endif %}{% if project.description %} - {{ project.description | escape }}{% endif %}</li>
   {%- endfor %}
 </ul>
 {%- endif -%}
