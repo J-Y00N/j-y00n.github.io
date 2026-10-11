@@ -11,6 +11,9 @@ permalink: pretty
 # Build entries dated in the future too, so list links never point to a missing page.
 future: true
 
+# A YAML error in front matter stops the build instead of quietly dropping the file or its settings.
+strict_front_matter: true
+
 # Turn off the default GitHub Pages theme (Primer). This site has its own layouts and styles.
 theme: null
 
@@ -31,6 +34,7 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-redirect-from
+  - jekyll-sitemap
 
 # Old addresses listed under redirect_from in front matter forward to their new page.
 redirect_from:
