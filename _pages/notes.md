@@ -3,6 +3,7 @@ title: Notes
 description: "Reading notes, study logs, technical memos, and short essays."
 permalink: /notes/
 layout: note-index
+empty_message: "No notes are listed yet."
 ---
 {% comment %}
 Internal editing note:

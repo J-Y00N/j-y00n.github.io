@@ -12,7 +12,6 @@ layout: page
 {% else %}
 <div class="empty-state-card">
   <h2>Current Status</h2>
-  <p>No formal publications are listed yet.</p>
-  <p>This page is intentionally kept in place so that future outputs can be added without changing the overall site structure.</p>
+  {{ page.empty_message | default: "No publications are listed yet." | markdownify }}
 </div>
 {% endif %}

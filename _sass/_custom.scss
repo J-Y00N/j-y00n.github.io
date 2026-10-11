@@ -543,8 +543,28 @@ blockquote {
     grid-template-columns: 1fr;
   }
 
+  // The photo and Site Info share the first row, and the link icons fill one row below them.
   .profile-aside {
     position: static;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    align-items: start;
+  }
+
+  .profile-links,
+  .site-info-card {
+    grid-column: 1 / -1;
+  }
+
+  .profile-links {
+    order: 1;
+  }
+
+  .profile-photo-slot ~ .site-info-card {
+    grid-column: auto;
+  }
+
+  .icon-link-grid {
+    grid-template-columns: repeat(auto-fit, minmax(2rem, 1fr));
   }
 
   .project-card-body,
@@ -568,5 +588,17 @@ blockquote {
 
   h1 {
     font-size: 1.9rem;
+  }
+}
+
+// Below 360px the Site Info column would wrap almost word by word in phone fonts, so the photo sits above it again, smaller and centered.
+@media (max-width: 359px) {
+  .profile-aside {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .profile-photo-slot {
+    justify-self: center;
+    width: 9rem;
   }
 }

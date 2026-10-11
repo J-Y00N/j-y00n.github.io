@@ -12,11 +12,11 @@ layout: default
     </div>
     {% endif %}
     {% if visible_profile_links.size > 0 %}
-    <div class="profile-links-card">
+    <div class="profile-links-card profile-links">
       <h2>Profile Links</h2>
       <div class="icon-link-grid">
         {% for link in visible_profile_links %}
-        <a class="icon-link" href="{{ link.url | strip | relative_url | escape }}" aria-label="{{ link.label | escape }}">
+        <a class="icon-link" {% include profile-link-href.html link=link %} aria-label="{{ link.label | escape }}">
           {% include profile-link-icon.html icon=link.icon %}
           <span class="sr-only">{{ link.label | escape }}</span>
         </a>
@@ -24,7 +24,7 @@ layout: default
       </div>
     </div>
     {% endif %}
-    <div class="profile-links-card">
+    <div class="profile-links-card site-info-card">
       <h2>Site Info</h2>
       <div class="meta-stack">
         {% for item in page.site_info %}

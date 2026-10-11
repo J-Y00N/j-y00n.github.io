@@ -3,7 +3,7 @@
   {% if visible_profile_links.size > 0 %}
   <p class="footer-links">
     {% for link in visible_profile_links %}
-    <a href="{{ link.url | strip | relative_url | escape }}">{{ link.label | escape }}</a>
+    <a {% include profile-link-href.html link=link %}>{{ link.label | escape }}</a>
     {% endfor %}
   </p>
   {% endif %}

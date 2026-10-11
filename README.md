@@ -22,11 +22,11 @@ Most updates should require only Markdown edits, not template changes.
 - `_projects/`: one Markdown file per project, shown as a summary with links
 - `_publications/`: one Markdown file per paper, report, or preprint, shown the same way
 - `_notes/`: one Markdown file per note or short post
-- `_data/`: site data such as `profile_links.yml`
+- `_data/`: site data: `profile_links.yml` for contact links and `navigation.yml` for the main menu
 - `_layouts/`: page templates (`default`, `home`, `page`, `note`, and the list pages `project-index`, `note-index`, `publication-index`)
 - `_includes/`: reusable fragments such as the header, footer, and summary cards
 - `_sass/`: styling
-- `bin/`: small helper scripts for setup, build, and local preview
+- `bin/`: small helper scripts for setup, build, link check, and local preview
 - `_site/`: generated output, never edit by hand
 
 ## Operating Principle
@@ -35,7 +35,8 @@ Use Markdown for content and touch templates only when the site's structure or a
 
 - If you are adding or revising text, edit Markdown files
 - If you are changing contact links, edit `_data/profile_links.yml`
-- If you are changing navigation or reusable page fragments, edit `_includes/`
+- If you are changing the main menu, edit `_data/navigation.yml`
+- If you are changing reusable page fragments, edit `_includes/`
 - If you are changing the page skeleton, edit `_layouts/`
 - If you are changing fonts, spacing, color, or page styling, edit `_sass/`
 - Do not manually edit files inside `_site/`
@@ -148,6 +149,10 @@ Run:
 ```
 
 Use this before pushing if you want a quick production-style verification.
+After the build it runs `./bin/check`, which reads every built page and lists each link or image inside the site that points to a file that was not built, such as a mistyped `thumbnail_url` or the old address of a renamed page.
+The command stops with an error when it finds one, and prints one `Link check OK` line otherwise.
+Links to other websites are not checked.
+To check again without rebuilding, run `./bin/check`.
 
 ### Install or refresh dependencies
 
@@ -188,6 +193,7 @@ How this works in the site:
 - the body of `index.md` is plain Markdown and appears next to the profile photo
 - the name above it comes from `author` in `_config.yml`, or from `heading` in `index.md`
 - `photo` and `site_info` in its front matter fill the left column
+- on most phones, the photo and `Site Info` share the first row, so keep each `site_info` value short, such as `PhD applicant` or `Seoul, Korea`; on very narrow screens the photo sits above `Site Info`
 - `site_info` values accept inline Markdown such as a link
 - the `Updated` date in the left column is added automatically from the build date
 - the browser tab shows the site `title` from `_config.yml`, so leave `title:` out of `index.md` and start its body with a sentence, not a heading, because a heading on the first line would become the tab title
@@ -212,9 +218,10 @@ How this works in the site:
 
 - the heading at the top of the page comes from `heading`, or from `title` when `heading` is not set
 - `title` also names the browser tab and link previews
-- a new page does not join the menu by itself, so add its link in `_includes/header.html`
+- a new page does not join the menu by itself, so add its `label` and `url` to `_data/navigation.yml`, where the order of the entries is the order of the menu
 - Research, Notes, and Publications list their entries through their layout, so their Markdown file holds only the intro text
 - keep the `layout:` line in `research.md`, `notes.md`, and `publications.md`, because it is what adds the list
+- `empty_message` in those three files is the text of the `Current Status` box shown while the list has no entries, and it accepts Markdown
 - write section headings with `##`, because the page title is already the top heading
 - `_pages/404.md` is the page GitHub Pages shows for an address that does not exist
 - `sitemap.xml` and `robots.txt` are generated automatically at build time, so there is no file to edit for them
@@ -397,12 +404,32 @@ How this works in the site:
 
 - the same list feeds the home page icons, the footer, and the CV contact section
 - a link whose `url` is `"#"` or empty stays hidden until a real address is filled in
-- use `mailto:name@example.com` for the email entry
 - use a full address such as `https://...`, or a site path that starts with `/`
 - a link to a file under `/assets/` appears only once that file exists, so the `CV (PDF)` entry appears once `assets/files/cv.pdf` is added
 - `icon` takes `email`, `github`, `linkedin`, `scholar`, or `cv`, and any other value shows a plain dot
 - the entry with `icon: cv` becomes the download button on the CV page instead of a contact line
 - add a new icon in `_includes/profile-link-icon.html`
+
+The email address goes in `email_base64` of the Email entry, encoded as Base64, and the entry stays hidden while it is empty.
+The address is then not in the repository or in the page source as plain text.
+A small script turns it back into a normal email link in the visitor's browser, and the CV shows the address as text.
+
+To make the value, run this in the terminal (the same on macOS and in WSL), with your own address in place of `your-address`:
+
+```bash
+printf '%s' 'your-address' | base64
+```
+
+Copy the output into the Email entry, for example `email_base64: "bmFtZUBleGFtcGxlLmNvbQ=="`, then check that it decodes back to your address, with your output in place of the example:
+
+```bash
+echo 'bmFtZUBleGFtcGxlLmNvbQ==' | base64 --decode
+```
+
+- use `printf` as shown rather than `echo` to make the value, because `echo` adds a line break to the encoded address
+- never write the plain address in any committed file or commit message, because Git keeps it in the history even after the file changes
+- this stops ordinary address harvesters, which read the page source, but not a determined bot that runs JavaScript or decodes Base64
+- without JavaScript the `Email` label still shows, but no address does
 
 ### 8. Keep an old address working
 
@@ -451,6 +478,25 @@ General rule:
 - use a portrait image of about 640 x 800 pixels (4:5), saved as JPEG or PNG under about 100 KB
 - keep it JPEG or PNG rather than WebP, because it is also the default `image` for link previews (`og:image`), and some sites do not show WebP there
 
+## Favicon
+
+The icon in the browser tab shows the initials JY on the site's green.
+It is made of three files, linked from `_layouts/default.html`:
+
+- `assets/images/favicon.svg`: the main icon, used by current browsers
+- `favicon.ico` in the repository root: the same icon at 16, 32, and 48 pixels, for browsers and tools that do not use the SVG
+- `assets/images/apple-touch-icon.png`: a 180 x 180 PNG, used when the site is added to a phone home screen
+
+To replace the icon:
+
+- overwrite the three files and keep their names and folders, so `_layouts/default.html` needs no change
+- `favicon.svg` must stay an SVG drawing, because current browsers use it before `favicon.ico`
+- for a photo or any other icon that exists only as a PNG, delete `assets/images/favicon.svg` and the line in `_layouts/default.html` that links it, then replace the other two files as below; `./bin/build` reports the link if only the file is deleted
+- make `apple-touch-icon.png` exactly 180 x 180 pixels with a solid background that fills the whole square, because iOS rounds the corners itself and shows transparent areas as black
+- make `favicon.ico` from a 48 x 48 PNG of the new icon with ImageMagick (`brew install imagemagick` on macOS, `sudo apt install imagemagick` in WSL): `magick icon-48.png -define icon:auto-resize=48,32,16 favicon.ico`, or `convert` in place of `magick` when only the older ImageMagick is installed
+- a cropped profile photo also works as the icon in this way, but a face is hard to recognize at 16 pixels
+- browsers cache the icon for a long time, so check a new one in a private window
+
 ## Writing Style Guidelines
 
 For this site, prefer a tone that is:
@@ -496,13 +542,16 @@ That means pushes to `main` should be reflected on the public site automatically
 
 - Change the short introduction or research interests: `index.md`
 - Change the longer background: `_pages/about.md`
-- Change contact links: `_data/profile_links.yml`
+- Change contact links or the email address: `_data/profile_links.yml`
 - Add a project: create a file in `_projects/`
 - Add a note: create a file in `_notes/`
 - Add a publication: create a file in `_publications/`
 - Replace the profile image: overwrite `assets/images/profile.png`, or add a new file and update `photo` in `index.md` and `image` in `_config.yml`
 - Add or replace a hosted PDF: put the file in `assets/files/`
-- Change navigation links: `_includes/header.html`
+- Change navigation links: `_data/navigation.yml`
+- Change the short line under the site title: `tagline` in `_config.yml`
+- Change the text shown while Research, Notes, or Publications has no entries: `empty_message` in `_pages/research.md`, `_pages/notes.md`, `_pages/publications.md`
+- Replace the browser tab icon: see `Favicon`
 - Change the shared page frame: `_layouts/default.html`
 - Change how note pages look: `_layouts/note.html`
 - Change how the Research, Notes, or Publications lists look: `_layouts/project-index.html`, `_layouts/note-index.html`, `_layouts/publication-index.html`
@@ -601,8 +650,14 @@ Check:
 
 Check:
 
-- that its `url` in `_data/profile_links.yml` is not `"#"` or empty
+- that its `url` in `_data/profile_links.yml` is not `"#"` or empty, or for the Email entry, that `email_base64` is filled in
 - that a file under `/assets/` exists at exactly that path, including upper and lower case
+
+## License
+
+- the code of the site (layouts, includes, styles, scripts, and configuration) is under the MIT License in `LICENSE`
+- the content (the text of the pages and entries, the CV, the profile photo, the site icons, and the files under `assets/images/` and `assets/files/`) is not, and all rights to it are reserved
+- if the public name changes, change the name in `LICENSE` together with `author` in `_config.yml`
 
 ## Future Extensions
 

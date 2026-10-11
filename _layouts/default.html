@@ -22,6 +22,9 @@
     <title>{% if page.title %}{{ page.title }} · {% endif %}{{ site.title }}</title>
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
     <link rel="alternate" type="application/atom+xml" title="{{ site.title }} · Notes" href="{{ '/feed.xml' | relative_url }}">
+    <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" sizes="32x32">
+    <link rel="icon" href="{{ '/assets/images/favicon.svg' | relative_url }}" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="{{ '/assets/images/apple-touch-icon.png' | relative_url }}">
     {% seo title=false %}
   </head>
   <body>
@@ -71,6 +74,26 @@
           storeTheme(nextTheme);
           applyTheme(nextTheme);
         });
+      })();
+    </script>
+    <script>
+      (function() {
+        // Email links carry the address as Base64 in data-email, so it is not in the page source.
+        var links = document.querySelectorAll('[data-email]');
+
+        for (var i = 0; i < links.length; i++) {
+          var address;
+          try {
+            address = atob(links[i].getAttribute('data-email')).trim();
+          } catch (error) {
+            continue;
+          }
+
+          links[i].setAttribute('href', 'mailto:' + address);
+          if (links[i].hasAttribute('data-email-text')) {
+            links[i].textContent = address;
+          }
+        }
       })();
     </script>
   </body>

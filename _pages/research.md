@@ -4,6 +4,7 @@ description: "Research-oriented projects in biosignals, machine learning, and re
 permalink: /research/
 layout: project-index
 heading: Research and Projects
+empty_message: "No projects are listed yet."
 redirect_from:
   - /projects/2026-03-19-ecg-arrhythmia-classification/
   - /projects/2026-03-19-eeg-motor-imagery-classification/
