@@ -12,6 +12,6 @@ layout: page
 {% else %}
 <div class="empty-state-card">
   <h2>Current Status</h2>
-  <p>No projects are listed yet.</p>
+  {{ page.empty_message | default: "No projects are listed yet." | markdownify }}
 </div>
 {% endif %}

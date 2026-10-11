@@ -5,7 +5,7 @@
   <li>Name: {{ site.author }}</li>
   {%- for link in visible_profile_links %}
   {%- unless link.icon == "cv" %}
-  <li>{{ link.label | escape }}: <a href="{{ link.url | strip | relative_url | escape }}">{{ link.url | strip | remove: "mailto:" | remove: "https://" | remove: "http://" | escape }}</a></li>
+  <li>{{ link.label | escape }}: <a {% include profile-link-href.html link=link show_address=true %}>{% if profile_link_email == "" %}{{ link.url | strip | remove: "mailto:" | remove: "https://" | remove: "http://" | escape }}{% endif %}</a></li>
   {%- endunless %}
   {%- endfor %}
 </ul>

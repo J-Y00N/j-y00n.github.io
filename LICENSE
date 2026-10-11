@@ -1,6 +1,17 @@
+This repository holds the code of a personal academic website and the content
+published on it. The two are licensed differently.
+
+Code: the layouts, includes, styles, scripts, configuration, and helper scripts
+are licensed under the MIT License below.
+
+Content: the text of the pages, notes, and project and publication entries, the
+CV and the CV PDF, the profile photo, the site icons, the figures, and the other
+files under assets/images/ and assets/files/ are not covered by the MIT License.
+Copyright (c) 2026 J. Yoon. All rights reserved, unless a file says otherwise.
+
 MIT License
 
-Copyright (c) 2026 BellCurve.Y
+Copyright (c) 2026 J. Yoon
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

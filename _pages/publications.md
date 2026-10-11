@@ -3,6 +3,7 @@ title: Publications
 description: "Formal research outputs such as papers, preprints, reports, and thesis-related writing."
 permalink: /publications/
 layout: publication-index
+empty_message: "No publications are listed yet. Papers, preprints, and reports will appear here."
 ---
 {% comment %}
 Internal editing note:

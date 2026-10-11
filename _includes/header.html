@@ -1,15 +1,13 @@
 <header class="site-header">
   <div>
     <a href="{{ '/' | relative_url }}" class="site-title">{{ site.title }}</a>
-    <p class="site-tagline">Research, projects, and notes</p>
+    {% if site.tagline and site.tagline != "" %}<p class="site-tagline">{{ site.tagline | escape }}</p>{% endif %}
   </div>
   <div class="site-controls">
     <nav class="site-nav" aria-label="Main navigation">
-      <a href="{{ '/about/' | relative_url }}">About</a>
-      <a href="{{ '/research/' | relative_url }}">Research</a>
-      <a href="{{ '/publications/' | relative_url }}">Publications</a>
-      <a href="{{ '/notes/' | relative_url }}">Notes</a>
-      <a href="{{ '/cv/' | relative_url }}">CV</a>
+      {%- for item in site.data.navigation %}
+      <a href="{{ item.url | relative_url | escape }}">{{ item.label | escape }}</a>
+      {%- endfor %}
     </nav>
     <button
       type="button"

@@ -1,0 +1,13 @@
+{% comment %}
+Prints where one entry of _data/profile_links.yml points: href="..." for a normal link.
+An entry with email_base64 gets data-email instead, so the address never appears in the page source.
+The script at the end of _layouts/default.html decodes it into a mailto: link.
+With show_address=true the script also shows the address as the link text.
+Sets profile_link_email: the Base64 address, or "" for a normal link.
+{% endcomment %}
+{%- assign profile_link_email = include.link.email_base64 | strip -%}
+{%- if profile_link_email != "" -%}
+data-email="{{ profile_link_email | escape }}"{% if include.show_address %} data-email-text{% endif %}
+{%- else -%}
+href="{{ include.link.url | strip | relative_url | escape }}"
+{%- endif -%}

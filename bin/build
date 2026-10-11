@@ -2,3 +2,4 @@
 set -euo pipefail
 
 bundle exec jekyll build
+bin/check

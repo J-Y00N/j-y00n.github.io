@@ -1,5 +1,6 @@
+# Email: put the address in email_base64, never in plain text (README section 7).
 - label: Email
-  url: "#"
+  email_base64: ""
   icon: email
 
 - label: GitHub

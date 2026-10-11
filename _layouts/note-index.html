@@ -15,7 +15,6 @@ layout: page
 {% else %}
 <div class="empty-state-card">
   <h2>Current Status</h2>
-  <p>No notes are listed yet.</p>
-  <p>This page will gradually collect reading notes, technical memos, and short reflections as they are written.</p>
+  {{ page.empty_message | default: "No notes are listed yet." | markdownify }}
 </div>
 {% endif %}
