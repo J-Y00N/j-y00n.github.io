@@ -182,15 +182,6 @@ a:hover {
   padding: 0.85rem;
 }
 
-.profile-photo-frame {
-  position: relative;
-  height: 0;
-  padding-top: 125%;
-  overflow: hidden;
-  border-radius: 0.55rem;
-  width: 100%;
-}
-
 .meta-stack {
   display: grid;
   gap: 0.45rem;
@@ -494,17 +485,14 @@ blockquote {
   text-align: center;
 }
 
-.profile-photo-frame img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center center;
+// The photo is shown whole at its own aspect ratio. Until it loads, a 4:5 box keeps its place.
+.profile-photo-slot img {
   display: block;
+  width: 100%;
+  aspect-ratio: auto 4 / 5;
   margin: 0;
   border: 0;
-  border-radius: 0;
+  border-radius: 0.55rem;
   box-shadow: none;
 }
 
@@ -543,24 +531,18 @@ blockquote {
     grid-template-columns: 1fr;
   }
 
-  // The photo and Site Info share the first row, and the link icons fill one row below them.
+  // A small centered photo, then Site Info, then the link icons in one row.
   .profile-aside {
     position: static;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
-    align-items: start;
   }
 
-  .profile-links,
-  .site-info-card {
-    grid-column: 1 / -1;
+  .profile-photo-slot {
+    justify-self: center;
+    width: 10rem;
   }
 
   .profile-links {
     order: 1;
-  }
-
-  .profile-photo-slot ~ .site-info-card {
-    grid-column: auto;
   }
 
   .icon-link-grid {
@@ -588,17 +570,5 @@ blockquote {
 
   h1 {
     font-size: 1.9rem;
-  }
-}
-
-// Below 360px the Site Info column would wrap almost word by word in phone fonts, so the photo sits above it again, smaller and centered.
-@media (max-width: 359px) {
-  .profile-aside {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .profile-photo-slot {
-    justify-self: center;
-    width: 9rem;
   }
 }

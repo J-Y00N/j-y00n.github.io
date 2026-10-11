@@ -6,9 +6,7 @@ layout: default
   <aside class="profile-aside">
     {% if page.photo %}
     <div class="profile-photo-slot">
-      <div class="profile-photo-frame">
-        <img src="{{ page.photo | relative_url }}" alt="Profile photo of {{ site.author | escape }}">
-      </div>
+      <img src="{{ page.photo | relative_url }}" alt="Profile photo of {{ site.author | escape }}">
     </div>
     {% endif %}
     {% if visible_profile_links.size > 0 %}

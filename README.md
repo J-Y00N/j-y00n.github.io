@@ -193,7 +193,7 @@ How this works in the site:
 - the body of `index.md` is plain Markdown and appears next to the profile photo
 - the name above it comes from `author` in `_config.yml`, or from `heading` in `index.md`
 - `photo` and `site_info` in its front matter fill the left column
-- on most phones, the photo and `Site Info` share the first row, so keep each `site_info` value short, such as `PhD applicant` or `Seoul, Korea`; on very narrow screens the photo sits above `Site Info`
+- on phones, a small centered photo comes first, then `Site Info`, then the link icons in one row
 - `site_info` values accept inline Markdown such as a link
 - the `Updated` date in the left column is added automatically from the build date
 - the browser tab shows the site `title` from `_config.yml`, so leave `title:` out of `index.md` and start its body with a sentence, not a heading, because a heading on the first line would become the tab title
@@ -475,7 +475,7 @@ General rule:
 - keep figures under `assets/images/research/`, `assets/images/publications/`, or `assets/images/notes/`
 - avoid mixing profile images with project-specific figures
 - if the image file name changes, also update `photo` in `index.md` and the default `image` in `_config.yml`
-- use a portrait image of about 640 x 800 pixels (4:5), saved as JPEG or PNG under about 100 KB
+- the photo is always shown whole at its own aspect ratio, never cropped or stretched; a portrait image of about 640 x 800 pixels (4:5) fits best, because a 4:5 space is kept for it while it loads; save it as JPEG or PNG under about 100 KB
 - keep it JPEG or PNG rather than WebP, because it is also the default `image` for link previews (`og:image`), and some sites do not show WebP there
 
 ## Favicon
