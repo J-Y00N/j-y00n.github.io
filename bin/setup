@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Run from the repository root, wherever the script is started from.
+cd "$(dirname "$0")/.."
+
 if [[ -f ".ruby-version" ]] && command -v ruby >/dev/null 2>&1; then
   current_ruby="$(ruby -e 'print RUBY_VERSION')"
   required_ruby="$(< .ruby-version)"
