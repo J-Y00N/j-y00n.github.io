@@ -168,6 +168,30 @@ Use this when:
 - updating Ruby gems
 - recovering from a broken local gem installation
 
+### After the pinned Ruby changes
+
+When `.ruby-version` names a Ruby that is not installed yet, for example after a `git pull`, `ruby -v` says that version is not installed.
+Do these steps once on each computer.
+
+First update `ruby-build`, so that it knows the new version:
+
+- macOS: `brew upgrade ruby-build` when `rbenv` was installed with Homebrew, or `git -C ~/.rbenv/plugins/ruby-build pull` when it was cloned from GitHub
+- WSL: `git -C ~/.rbenv/plugins/ruby-build pull`
+
+Then, in the repository, install the new Ruby and rebuild the gems for it:
+
+```bash
+rbenv install
+rm -rf vendor/bundle
+./bin/setup
+./bin/build
+```
+
+- `rbenv install` reads the version from `.ruby-version`
+- `rm -rf vendor/bundle` removes the gems built for the old Ruby, and `./bin/setup` installs them again for the new one
+- `./bin/setup` may first print that it is installing the Bundler version recorded in `Gemfile.lock` and restarting with it, which is expected and does not change `Gemfile.lock`
+- the old Ruby is then no longer used, and it can be removed later with `rbenv uninstall 3.2.10`
+
 ## Content Editing Guide
 
 Each page and note can set `description` in its front matter.
@@ -567,6 +591,7 @@ That means pushes to `main` should be reflected on the public site automatically
 
 Do not rely on the macOS system Ruby or the Ruby from `apt` for this project.
 Use the repository-pinned Ruby through `rbenv`, `asdf`, or `mise`, then run the helper scripts.
+The pinned Ruby is 3.3, the same series that GitHub Pages uses to build the site.
 `Gemfile.lock` uses `github-pages` 232, the version shown in the GitHub Pages build log.
 When the build log shows a newer version, run `bundle update github-pages`, then `./bin/build`, and commit `Gemfile.lock` if the build is clean.
 
