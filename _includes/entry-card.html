@@ -1,17 +1,34 @@
 {% comment %}
 One project or publication shown as a summary card.
-The title and thumbnail open the first usable entry in `links`; every link is also shown as a button.
+The thumbnail, when there is one, sits on the left. Beside it come the title, the authors, a line with the status, venue, area, and period, the description, and the buttons.
+When the text is shorter than the thumbnail, the buttons move down to line up with its bottom edge.
+The title opens the first usable entry in `links`; every link is also shown as a button.
+The thumbnail opens `thumbnail_link` when it is set and not "#", and the same entry as the title otherwise.
+When `thumbnail_link` is the url of one of the links, the image's alt text starts with that link's label, such as "Poster: Title".
 {% endcomment %}
 {% assign card_heading = include.heading | default: 'h2' %}
 {% include entry-main-link.html links=include.entry.links %}
 {% assign card_link_url = entry_main_link.url | strip %}
 {% assign card_thumbnail = include.entry.thumbnail_url | strip %}
+{% assign card_media_url = include.entry.thumbnail_link | strip %}
+{% assign card_media_alt = include.entry.title %}
+{% if card_media_url == "" or card_media_url == "#" %}
+  {% assign card_media_url = card_link_url %}
+{% else %}
+  {% for link in include.entry.links %}
+    {% assign card_media_link_url = link.url | strip %}
+    {% if card_media_link_url == card_media_url %}
+      {% assign card_media_alt = link.label | default: 'Link' | append: ': ' | append: include.entry.title %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
 <article class="project-card">
   <div class="project-card-body{% if card_thumbnail == "" %} project-card-body-no-media{% endif %}">
     {% if card_thumbnail != "" %}
-    {% if card_link_url != "" %}
-    <a class="project-card-media" href="{{ card_link_url | relative_url | escape }}">
-      <img src="{{ card_thumbnail | relative_url | escape }}" alt="{{ include.entry.title | escape }}">
+    {% if card_media_url != "" %}
+    <a class="project-card-media" href="{{ card_media_url | relative_url | escape }}">
+      <img src="{{ card_thumbnail | relative_url | escape }}" alt="{{ card_media_alt | escape }}">
     </a>
     {% else %}
     <div class="project-card-media">
@@ -20,16 +37,16 @@ The title and thumbnail open the first usable entry in `links`; every link is al
     {% endif %}
     {% endif %}
     <div class="project-card-copy">
+      <{{ card_heading }} class="project-card-title">
+        {% if card_link_url != "" %}<a href="{{ card_link_url | relative_url | escape }}">{{ include.entry.title | escape }}</a>{% else %}{{ include.entry.title | escape }}{% endif %}
+      </{{ card_heading }}>
+      {% if include.entry.authors %}<p class="entry-authors">{{ include.entry.authors | escape }}</p>{% endif %}
       <p class="project-card-meta">
         {% if include.entry.status %}<span class="project-status">{{ include.entry.status | escape }}</span>{% endif %}
         {% if include.entry.venue %}<span><em>{{ include.entry.venue | escape }}</em></span>{% endif %}
         {% if include.entry.area %}<span>{{ include.entry.area | escape }}</span>{% endif %}
         {% if include.entry.period %}<span>{{ include.entry.period | escape }}</span>{% elsif include.entry.date %}<span>{{ include.entry.date | date: '%Y' }}</span>{% endif %}
       </p>
-      <{{ card_heading }} class="project-card-title">
-        {% if card_link_url != "" %}<a href="{{ card_link_url | relative_url | escape }}">{{ include.entry.title | escape }}</a>{% else %}{{ include.entry.title | escape }}{% endif %}
-      </{{ card_heading }}>
-      {% if include.entry.authors %}<p class="entry-authors">{{ include.entry.authors | escape }}</p>{% endif %}
       {% if include.entry.description %}<p class="project-card-summary">{{ include.entry.description | escape }}</p>{% endif %}
       {% include entry-links.html links=include.entry.links %}
     </div>

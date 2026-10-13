@@ -293,9 +293,8 @@ Recommended front matter:
 title: "Project Title"
 date: 2026-03-19
 description: "One or two lines on the question and the main result."
-status: Ongoing
 featured: true
-area: "Field / Method"
+venue: "Workshop or Competition Name"
 period: "2025.03 - 2025.06"
 thumbnail_url: "/assets/images/research/short-project-name/figure.png"
 links:
@@ -313,12 +312,19 @@ How this works in the site:
 - the body below the front matter is not published, so leave it empty
 - `links` takes any address, for example GitHub, Hugging Face, a personal blog, a Notion page, or a lab or company post
 - the label is free text, such as `Code`, `Model`, `Demo`, `Blog`, or `Slides`
-- the first link also opens from the title and the thumbnail, so put the main destination first
+- the first link also opens from the title, and from the thumbnail unless `thumbnail_link` is set, so put the main destination first
 - a link whose `url` is `"#"` or empty is skipped, and an entry without links shows its title as plain text
 - a link to a file under `/assets/` shows even before the file exists, so add the file first
 - a file hosted on this site can be linked as `/assets/files/name.pdf`
+- the card shows the title, then a line with `venue` and `period`, then `description`, then the link buttons
+- keep `description` to about 150 characters, two lines on `Research`, so it does not outweigh the title
 - `period` is optional, and the year of `date` is shown when it is missing
-- `thumbnail_url` is optional, and the card uses the full width without it
+- `venue` is optional and shows in italics, for example the competition or workshop where the project was presented
+- inside double quotes, `\u00a0` is a space where the line never breaks; the current `venue` values use it to keep `Silver Prize (2024 entry)` together
+- `status` and `area` are optional and join the same line when set; the current projects leave them out
+- `thumbnail_url` is the image shown on the card; it is optional, and the card uses the full width without it
+- `thumbnail_link` is optional and sets the address the thumbnail opens, while the title keeps opening the first link; an empty or `"#"` value is ignored
+- give `thumbnail_link` the address of one of the links, such as the Poster link, so screen readers name the image after that button
 - a thumbnail of about 800 x 500 pixels (16:10) under about 60 KB stays sharp and loads quickly
 - `featured: true` shows the project under `Selected Projects` on the home page and the CV
 - project images should live under `assets/images/research/`
@@ -400,7 +406,7 @@ How this works in the site:
 
 - `Publications` shows each entry as a summary card, the same as `Research`
 - the body below the front matter is not published, so keep the abstract on the linked page
-- `links` follows the same rules as for projects, and the first link opens from the title
+- `links`, `thumbnail_url`, and `thumbnail_link` follow the same rules as for projects, and the first link opens from the title
 - `featured: true` shows the entry under `Selected Publications` on the home page
 - the CV lists every publication in the citation format below, built from `authors`, `title`, `venue`, `date`, and `status`
 
