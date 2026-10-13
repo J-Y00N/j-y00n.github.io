@@ -4,7 +4,9 @@
 .DS_Store
 .AppleDouble
 .LSOverride
-Icon?
+# Finder's folder-icon file is named Icon followed by a carriage return.
+# The bracket keeps names such as icons/ from being ignored on macOS, where Git ignores letter case.
+Icon[!a-zA-Z0-9._-]
 ._*
 
 ###############################################################################

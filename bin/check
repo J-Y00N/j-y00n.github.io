@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Run from the repository root, wherever the script is started from.
+cd "$(dirname "$0")/.."
+
 ruby bin/check-site.rb "$@"

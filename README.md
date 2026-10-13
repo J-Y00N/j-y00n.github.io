@@ -56,14 +56,37 @@ This repository pins Ruby with `.ruby-version` and `.tool-versions`.
 
 ## One-Time Setup (macOS)
 
-1. Install a Ruby version manager such as `rbenv`, `asdf`, or `mise`
-2. If you use `rbenv`, add `eval "$(rbenv init - zsh)"` to your shell startup file
-3. Open a new shell
-4. Move into this repository
-5. Confirm the pinned Ruby is active with `ruby -v`
-6. Run `./bin/setup`
+1. Install the Xcode Command Line Tools with `xcode-select --install`, and Homebrew from `https://brew.sh` if it is not installed yet
+2. Install `rbenv` with `ruby-build`, the libraries Ruby needs, and the GitHub CLI:
 
-If the repository is configured correctly, `ruby -v` should report the version from `.ruby-version`.
+```bash
+brew install rbenv ruby-build openssl@3 libyaml gh
+echo 'eval "$(rbenv init - zsh)"' >> ~/.zshrc
+eval "$(rbenv init - zsh)"
+```
+
+3. Set the same commit name and email as on the other computer:
+
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your-id@users.noreply.github.com"
+```
+
+4. Clone the repository, then install the pinned Ruby and run the setup:
+
+```bash
+cd ~
+git clone https://github.com/J-Y00N/j-y00n.github.io.git
+cd j-y00n.github.io
+rbenv install
+./bin/setup
+./bin/build
+```
+
+`rbenv install` with no version reads `.ruby-version`, and `ruby -v` inside the repository then reports that version.
+`asdf` or `mise` can be used instead of `rbenv`, because they read the same version from `.tool-versions`.
+
+Before the first `git push`, run `gh auth login`, choose HTTPS, and let it authenticate Git.
 
 ## One-Time Setup (Windows with WSL2)
 
@@ -149,7 +172,7 @@ Run:
 ```
 
 Use this before pushing if you want a quick production-style verification.
-After the build it runs `./bin/check`, which reads every built page and lists each link or image inside the site that points to a file that was not built, such as a mistyped `thumbnail_url` or the old address of a renamed page.
+After the build it runs `./bin/check`, which reads every built page and lists each link or image inside the site (an address that starts with `/`) that points to a file that was not built, such as a mistyped `thumbnail_url` or the old address of a renamed page.
 The command stops with an error when it finds one, and prints one `Link check OK` line otherwise.
 Links to other websites are not checked.
 To check again without rebuilding, run `./bin/check`.
@@ -165,8 +188,10 @@ Run:
 Use this when:
 
 - setting up the site on a new machine
-- updating Ruby gems
-- recovering from a broken local gem installation
+- `Gemfile.lock` has changed, for example after a `git pull`
+- the local gems are broken: run `rm -rf vendor/bundle` first, then `./bin/setup`
+
+`./bin/setup` installs exactly the versions recorded in `Gemfile.lock`; it does not update them.
 
 ### After the pinned Ruby changes
 
@@ -196,7 +221,7 @@ rm -rf vendor/bundle
 
 Each page and note can set `description` in its front matter.
 It is used for search results and link previews.
-On a project or publication, `description` is the summary shown on the card and in the CV.
+On a project or publication, `description` is the summary shown on the card, and for a project also in the CV.
 
 ### 1. Edit the home page
 
@@ -555,12 +580,12 @@ Basic deployment flow:
 3. Commit and push to the default branch
 4. Let GitHub Pages build and publish automatically
 
-In the current local Git setup:
+The repository is set up like this:
 
 - remote: `origin -> https://github.com/J-Y00N/j-y00n.github.io.git`
-- default working branch: `main`
+- published branch: `main`
 
-That means pushes to `main` should be reflected on the public site automatically, assuming GitHub Pages is enabled for the repository.
+Each push to `main` starts the `pages build and deployment` run under the repository's `Actions` tab, and the public site updates when it finishes.
 
 ## What to Edit for Common Tasks
 
@@ -594,6 +619,11 @@ Use the repository-pinned Ruby through `rbenv`, `asdf`, or `mise`, then run the 
 The pinned Ruby is 3.3, the same series that GitHub Pages uses to build the site.
 `Gemfile.lock` uses `github-pages` 232, the version shown in the GitHub Pages build log.
 When the build log shows a newer version, run `bundle update github-pages`, then `./bin/build`, and commit `Gemfile.lock` if the build is clean.
+
+GitHub Pages does not read `Gemfile.lock`.
+It builds with its own fixed gems (`github-pages` 232) on Ruby 3.3, set in the `actions/jekyll-build-pages` builder, so `Gemfile.lock` only decides what runs on your computer, where it processes only this repository's own files.
+If GitHub shows security alerts for gems in `Gemfile.lock`, they concern these local builds, not the public site.
+Change those gems only together with a `github-pages` update as described above; other alerts can be dismissed as a tolerable risk.
 
 ## Troubleshooting
 
@@ -677,6 +707,34 @@ Check:
 
 - that its `url` in `_data/profile_links.yml` is not `"#"` or empty, or for the Email entry, that `email_base64` is filled in
 - that a file under `/assets/` exists at exactly that path, including upper and lower case
+
+## Versioning
+
+Git tags such as `v1.0.0` mark versions of the site's structure: templates, styles, scripts, configuration, the front matter and `_data` fields, and the URLs.
+Adding or editing content, such as notes, projects, the CV, or images, never needs a new version.
+
+- `v1.0.x`: fixes that change neither how content is written nor which URLs exist, such as a style or README fix, a Ruby patch release, or a `Gemfile.lock` update
+- `v1.x.0`: additions that keep existing content working, such as a new optional front matter field or page, or a newer Ruby series that only needs the steps in `After the pinned Ruby changes`
+- `v2.0.0`: changes that require editing existing content or that change published URLs, such as renaming front matter fields or moving to a different build setup
+
+Ruby and the gems stay pinned in `.ruby-version` and `Gemfile.lock`, and they are updated on purpose, not automatically:
+
+- when GitHub Pages moves to a newer `github-pages` version, shown in its build log, or to a newer Ruby series
+- when the pinned Ruby reaches its end of life; for Ruby 3.3 this is expected around March 2027, and moving to Ruby 3.4 also needs `gem 'bigdecimal'` in `Gemfile`
+- when a needed fix or feature requires it
+
+To tag a version, after the change is merged into `main` and pushed:
+
+```bash
+git switch main && git pull --ff-only
+git status --short
+git tag -a v1.0.1 -m "v1.0.1: short summary"
+git push origin v1.0.1
+```
+
+- `git status --short` must print nothing
+- an annotated tag records the tagger's name and email, so check first that `git config user.email` prints the noreply address
+- pushing a tag does not start a new GitHub Pages build
 
 ## License
 
