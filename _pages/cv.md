@@ -11,22 +11,19 @@ Internal editing note:
 - Contact, Selected Projects, and Publications are filled in automatically by the include lines below.
 - Maintenance guidance belongs primarily in README.md.
 {% endcomment %}
-This page is intended to function as a concise web CV.
-
 {% include cv-contact.html %}
 
 ## Education
 
-- `[Degree or expected degree]`, `[Institution]`, `[Year or expected year]`
+- BSc in Statistics and Data Science, double major in Computer Science, Korea National Open University, `[year or expected year]`
 - `[Previous degree if applicable]`, `[Institution]`, `[Year]`
 
 ## Research Experience
 
 - `[Role or position]`, `[Lab / group / institution]`, `[date range]`
-  Brief description: `[1-2 lines on topic, methods, or contribution]`
-
+  - `[1-2 lines on topic, methods, or contribution]`
 - `[Role or position]`, `[Lab / group / institution]`, `[date range]`
-  Brief description: `[1-2 lines on topic, methods, or contribution]`
+  - `[1-2 lines on topic, methods, or contribution]`
 
 {% include cv-projects.html %}
 
@@ -34,8 +31,8 @@ This page is intended to function as a concise web CV.
 
 ## Awards and Honors
 
-- `[Award or scholarship]`, `[year]`
-- `[Award or scholarship]`, `[year]`
+- Bronze Prize, KNOU Statistics & Data Analysis Competition, 2025 (EEG motor imagery classification)
+- Silver Prize, KNOU Statistics & Data Analysis Competition, 2024 (ECG heartbeat classification)
 
 ## Technical Skills
 
