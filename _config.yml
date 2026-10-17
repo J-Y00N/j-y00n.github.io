@@ -84,3 +84,5 @@ defaults:
       type: notes
     values:
       layout: note
+  - legacy/
+  
