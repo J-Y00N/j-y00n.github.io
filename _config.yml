@@ -28,6 +28,7 @@ exclude:
   - Gemfile.lock
   - node_modules/
   - vendor/
+  - legacy/
 
 sass:
   style: compressed
@@ -84,5 +85,3 @@ defaults:
       type: notes
     values:
       layout: note
-  - legacy/
-  
