@@ -1,6 +1,6 @@
 ---
 title: "Waste Sorting Vision: Household Waste Detection with YOLOv8"
-date: 2023-06-01
+date: 2023-11-01
 description: "Led the YOLOv8 training for household waste detection in a team project, later refactored into a modular Streamlit app for image and video inference."
 featured: false
 venue: "Microsoft AI School, team project"
