@@ -1,6 +1,6 @@
 # Email: put the address in email_base64, never in plain text (README section 7).
 - label: Email
-  email_base64: ""
+  email_base64: "ai55b29uLnN0YXRzQGdtYWlsLmNvbQ=="
   icon: email
 
 - label: GitHub
