@@ -7,16 +7,6 @@ site_info:
   - label: Base
     value: "South Korea" # [institution or city]
 ---
-<!-- This website is a lightweight academic profile for graduate-school preparation,
-research documentation, and public technical writing. My current direction
-remains intentionally open across statistics, applied mathematics,
-computational neuroscience, BCI, machine learning, and computational science.
-
-I am especially drawn to work that combines mathematical structure, empirical
-data, and scientific interpretation. Rather than presenting a fixed label too
-early, this site is meant to document how those interests develop through
-projects, notes, and application materials. -->
-
 I am interested in computational statistics and machine learning for data that vary across individuals, particularly neural and physiological signals, with brain–computer interfaces as my main application.
 I came to this field from clinical practice: after five years as a registered nurse, I completed a BSc in Statistics and Data Science, with a double major in Computer Science, at Korea National Open University in 2026.
 
@@ -30,5 +20,3 @@ I am preparing for an MSc in statistics or machine learning, followed by doctora
 - Generalisation and uncertainty for unseen individuals
 - Neural and physiological time series (EEG, ECG)
 - Brain–computer interfaces and computational neuroscience
-
-<!-- - `[Research interest 1]` -->

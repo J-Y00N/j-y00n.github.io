@@ -28,6 +28,7 @@ Most updates should require only Markdown edits, not template changes.
 - `_sass/`: styling
 - `bin/`: small helper scripts for setup, build, link check, and local preview
 - `_site/`: generated output, never edit by hand
+- `legacy/`: optional local folder for old files such as patches; Git ignores it and the build leaves it out
 
 ## Operating Principle
 
@@ -372,7 +373,7 @@ Optional home-news marker:
 
 ### 5. Add a new publication or report
 
-Create a new Markdown file inside `_publications/`.
+Create a new Markdown file inside `_publications/`, and create the folder first if it does not exist yet.
 Publications work the same way as projects: a summary card with outside links.
 
 Recommended naming pattern:
@@ -449,6 +450,7 @@ How this works in the site:
   - `{% include cv-projects.html %}`: projects with `featured: true`
   - `{% include cv-publications.html %}`: every entry in `_publications/`
 - `Selected Projects` and `Publications and Preprints` are left out while they have nothing to show
+- printing the page, or saving it as PDF from the browser, leaves out the menu, the theme button, the download button, and the footer, and uses dark text on white in either theme
 
 ### 7. Update profile and contact links
 
@@ -462,7 +464,9 @@ How this works in the site:
 - a link whose `url` is `"#"` or empty stays hidden until a real address is filled in
 - use a full address such as `https://...`, or a site path that starts with `/`
 - a link to a file under `/assets/` appears only once that file exists, so the `CV (PDF)` entry appears once `assets/files/cv.pdf` is added
-- `icon` takes `email`, `github`, `linkedin`, `scholar`, or `cv`, and any other value shows a plain dot
+- `icon` takes `email`, `github`, `linkedin`, `scholar`, `orcid`, or `cv`, and any other value shows a plain dot
+- the ORCID entry stays hidden until its `url` is your ORCID iD address, such as `https://orcid.org/0000-0000-0000-0000`
+- when you add a real profile address, also add it under `social: links` in `_config.yml`, so the home and About pages list it for search engines
 - the entry with `icon: cv` becomes the download button on the CV page instead of a contact line
 - add a new icon in `_includes/profile-link-icon.html`
 
@@ -492,14 +496,23 @@ echo 'bmFtZUBleGFtcGxlLmNvbQ==' | base64 --decode
 Files:
 
 - `_pages/research.md`
-- `_notes/2026-03-19-welcome.md`
-- `_notes/2026-03-20-current-stage.md`
+- `_pages/notes.md`
+- `_pages/publications.md`
+- any note with `redirect_from` in its front matter
 
 How this works in the site:
 
 - `redirect_from` in front matter lists old addresses that forward to that page
 - `_pages/research.md` forwards the old project pages under `/projects/` to `/research/`
-- each note forwards its old dated address, such as `/notes/2026-03-19-welcome/`, to its current one
+- each note forwards its old dated address, such as `/notes/2026-03-19-note-name/`, to its current one
+- when you delete a note, move its current address and every address under its `redirect_from` to `redirect_from` in `_pages/notes.md`, so they forward to `/notes/` instead of showing the 404 page
+- list several addresses under one `redirect_from:` key, one per line, because a second `redirect_from:` line silently replaces the first:
+
+```yaml
+redirect_from:
+  - /notes/note-name/
+  - /notes/2026-03-19-note-name/
+```
 - keep these lines, because removing one breaks links that were already shared
 - when you rename a page or a note, add its old address under `redirect_from`, with the trailing slash
 - projects and publications have no page of their own, so put their old addresses on `_pages/research.md` or `_pages/publications.md`
@@ -582,10 +595,11 @@ This repository is intended for GitHub Pages deployment through the `j-y00n.gith
 
 Basic deployment flow:
 
-1. Make content or style changes
-2. Run `./bin/build`
-3. Commit and push to the default branch
+1. Make content or style changes on the `beta` branch, and check them with `./bin/serve` and `./bin/build`
+2. Commit and push `beta`
+3. Merge `beta` into `main` and push `main`
 4. Let GitHub Pages build and publish automatically
+5. Bring `beta` up to `main` again, so the next change starts from what is published (the last three lines of the deploy commands below)
 
 The repository is set up like this:
 
@@ -593,6 +607,64 @@ The repository is set up like this:
 - published branch: `main`
 
 Each push to `main` starts the `pages build and deployment` run under the repository's `Actions` tab, and the public site updates when it finishes.
+
+### Working on beta
+
+Before you start, and right after each deployment, bring `beta` up to `main`:
+
+```bash
+git switch main && git pull --ff-only origin main
+git switch beta && git pull --ff-only origin beta
+git merge --ff-only main
+git push origin beta
+```
+
+When the change works on `beta`, stage it and look at the list:
+
+```bash
+git add -A
+git status --short
+```
+
+If the list shows only the files you meant to change, commit and deploy:
+
+```bash
+git commit -m "Short summary of the change"
+git push origin beta
+git switch main
+git pull --ff-only origin main
+git merge --no-ff --no-edit beta
+git push origin main
+git switch beta
+git merge --ff-only main
+git push origin beta
+```
+
+- make every change on `beta`, even a small one such as `.gitignore`, so `main` only receives merges
+- if a file in the list should not be committed, unstage it with `git restore --staged <file>`, or add it to `.gitignore`
+- if `git merge --ff-only main` refuses, `beta` has commits that `main` does not: run `git merge --no-edit main`
+- if that merge stops with a conflict, fix the files, run `git add -A` and `git commit --no-edit`, check with `./bin/build`, then run `git push origin beta`
+- if `git pull --ff-only` refuses, the other computer pushed commits that this one does not have: run `git pull --no-rebase --no-edit origin beta` (or `main`), then push
+- `--no-edit` keeps Git from opening an editor for the merge message
+- if a merge stops halfway, `git merge --abort` puts the branch back where it was
+
+### Search engines
+
+- `sitemap.xml` and `robots.txt` are generated on every build, so there is nothing to keep up to date
+- the profiles under `social: links` in `_config.yml` are listed as related profiles (`sameAs`) in the search-engine data of the home and About pages
+- to check how Google sees the site, add `https://j-y00n.github.io/` in Google Search Console as a URL-prefix property and choose the HTML tag method
+- copy only the `content` value of the tag it gives you into `_config.yml`, then deploy and press Verify:
+
+```yaml
+webmaster_verifications:
+  google: "the-content-value"
+```
+
+- keep the `webmaster_verifications` lines after it is verified, because Google checks them again later
+- after it is verified, submit `https://j-y00n.github.io/sitemap.xml` under `Sitemaps`
+- Bing works the same way with `bing:`
+- Naver Search Advisor is not covered by this setting, so use its HTML file method and put that file in the repository root
+- that file also appears in `sitemap.xml`, which does no harm
 
 ## What to Edit for Common Tasks
 
@@ -747,7 +819,7 @@ git push origin v1.0.1
 
 - the code of the site (layouts, includes, styles, scripts, and configuration) is under the MIT License in `LICENSE`
 - the content (the text of the pages and entries, the CV, the profile photo, the site icons, and the files under `assets/images/` and `assets/files/`) is not, and all rights to it are reserved
-- if the public name changes, change the name in `LICENSE` together with `author` in `_config.yml`
+- if the public name changes, change it in `LICENSE` and in both `title` and `author` in `_config.yml`, because the header, the footer, and the browser tab show `title`
 
 ## Future Extensions
 

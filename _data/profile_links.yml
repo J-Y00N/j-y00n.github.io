@@ -15,6 +15,10 @@
   url: "#"
   icon: scholar
 
+- label: ORCID
+  url: "#"
+  icon: orcid
+
 - label: CV (PDF)
   url: /assets/files/cv.pdf
   icon: cv

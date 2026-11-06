@@ -217,6 +217,16 @@ a:hover {
   text-transform: uppercase;
 }
 
+// Headings inside the empty-state card start at the top of the card, and its last line ends at the bottom.
+.empty-state-card h2,
+.empty-state-card h3 {
+  margin-top: 0;
+}
+
+.empty-state-card > :last-child {
+  margin-bottom: 0;
+}
+
 .profile-links-card h2 {
   margin-top: 0;
   border-bottom: none;
@@ -593,5 +603,74 @@ blockquote {
 
   h1 {
     font-size: 1.9rem;
+  }
+}
+
+// Printing a page, or saving it as PDF from the browser, uses dark text on white in either theme
+// and leaves out the menu, the theme button, the CV download button, and the footer.
+@media print {
+  :root[data-theme],
+  :root:not([data-theme="light"]) {
+    --bg: #fff;
+    --panel: #fff;
+    --text: #111;
+    --muted: #444;
+    --line: #ccc;
+    --line-soft: rgba(0, 0, 0, 0.08);
+    --accent: #0f5c4d;
+    --accent-soft: #fff;
+  }
+
+  body,
+  :root[data-theme] body,
+  :root:not([data-theme="light"]) body {
+    background: #fff;
+  }
+
+  .site-controls,
+  .site-footer,
+  .cv-download {
+    display: none;
+  }
+
+  .site-shell {
+    max-width: none;
+    padding: 0;
+  }
+
+  .project-card,
+  .profile-photo-slot,
+  .profile-links-card,
+  .empty-state-card,
+  .page-content img {
+    box-shadow: none;
+  }
+
+  .project-card,
+  .news-list li,
+  .notes-list li {
+    break-inside: avoid;
+  }
+
+  // A heading stays on the same page as the text after it.
+  h1,
+  h2,
+  h3 {
+    break-after: avoid;
+  }
+
+  // Long code lines and addresses wrap instead of shrinking the whole page.
+  .page-content {
+    overflow-wrap: break-word;
+  }
+
+  pre,
+  code {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+
+  .profile-aside {
+    position: static;
   }
 }
