@@ -1,14 +1,36 @@
 ---
 layout: page
 ---
+{% comment %}
+Projects with `kind: research` are listed under the research heading, and every other project under the projects heading.
+While only one of the two groups has entries, the page shows a single list without headings.
+The headings come from `research_heading` and `projects_heading` in the page's front matter.
+{% endcomment %}
 {{ content }}
 {% assign projects = site.projects | sort: 'date' | reverse %}
 {% if projects.size > 0 %}
+{% assign research_projects = projects | where: "kind", "research" %}
+{% assign other_projects = projects | where_exp: "project", "project.kind != 'research'" %}
+{% if research_projects.size > 0 and other_projects.size > 0 %}
+<h2 id="research">{{ page.research_heading | default: "Research" | escape }}</h2>
+<div class="project-card-list">
+  {% for project in research_projects %}
+  {% include entry-card.html entry=project heading='h3' %}
+  {% endfor %}
+</div>
+<h2 id="projects">{{ page.projects_heading | default: "Projects" | escape }}</h2>
+<div class="project-card-list">
+  {% for project in other_projects %}
+  {% include entry-card.html entry=project heading='h3' %}
+  {% endfor %}
+</div>
+{% else %}
 <div class="project-card-list">
   {% for project in projects %}
   {% include entry-card.html entry=project %}
   {% endfor %}
 </div>
+{% endif %}
 {% else %}
 <div class="empty-state-card">
   <h2>Current Status</h2>
