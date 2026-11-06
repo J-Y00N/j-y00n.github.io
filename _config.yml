@@ -78,6 +78,7 @@ defaults:
       path: ''
     values:
       layout: default
+      # Link previews use the square profile image; the home page photo is `photo` in index.md.
       image: /assets/images/profile.png
       twitter:
         card: summary
