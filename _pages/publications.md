@@ -1,9 +1,9 @@
 ---
 title: Publications
-description: "Formal research outputs such as papers, preprints, reports, and thesis-related writing."
+description: "Papers, preprints, and theses by J. Yoon."
 permalink: /publications/
 layout: publication-index
-empty_message: "No publications are listed yet. Papers, preprints, and reports will appear here."
+empty_message: "There are no publications yet. Papers and preprints will be listed here as they appear; in the meantime, the full reports and posters of my projects are linked from [Research](/research/)."
 ---
 {% comment %}
 Internal editing note:
@@ -11,4 +11,4 @@ Internal editing note:
 - Publication entry guidance belongs primarily in README.md.
 - Entries are summary cards that link out. Keep the details on the linked pages.
 {% endcomment %}
-This section is reserved for formal research outputs such as papers, preprints, reports, or thesis-related writing.
+Peer-reviewed papers, preprints, and theses, listed with the newest first.

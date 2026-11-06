@@ -1,6 +1,6 @@
 ---
 title: Research
-description: "Research-oriented projects in biosignals, machine learning, and related technical work."
+description: "Research and applied projects in statistics and machine learning."
 permalink: /research/
 layout: project-index
 heading: Research and Projects
