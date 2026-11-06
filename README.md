@@ -272,6 +272,7 @@ How this works in the site:
 - keep the `layout:` line in `research.md`, `notes.md`, and `publications.md`, because it is what adds the list
 - `empty_message` in those three files is the text of the `Current Status` box shown while the list has no entries, and it accepts Markdown
 - write section headings with `##`, because the page title is already the top heading
+- About, CV, the 404 page, and every note show their text in a centred reading column, while Research, Publications, and Notes use the full width for their lists
 - `_pages/404.md` is the page GitHub Pages shows for an address that does not exist
 - `sitemap.xml` and `robots.txt` are generated automatically at build time, so there is no file to edit for them
 - every page and note is listed in `sitemap.xml`, and `sitemap: false` in the front matter leaves a page out, as in `404.md`
