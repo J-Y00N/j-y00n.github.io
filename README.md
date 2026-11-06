@@ -296,6 +296,7 @@ title: "Project Title"
 date: 2026-03-19
 description: "One or two lines on the question and the main result."
 featured: true
+kind: research
 venue: "Workshop or Competition Name"
 period: "2025.03 - 2025.06"
 thumbnail_url: "/assets/images/research/short-project-name/figure.png"
@@ -329,6 +330,9 @@ How this works in the site:
 - give `thumbnail_link` the address of one of the links, such as the Poster link, so screen readers name the image after that button
 - a thumbnail of about 800 x 500 pixels (16:10) under about 60 KB stays sharp and loads quickly
 - `featured: true` shows the project under `Selected Projects` on the home page and the CV
+- `kind: research` lists the project under the `Research` heading of the Research page, and a project without it goes under `Projects`; leave the line out for course, team, or side projects
+- while only one of the two groups has entries, the Research page shows one list without headings
+- the two headings come from `research_heading` and `projects_heading` in the front matter of `_pages/research.md`, and are `Research` and `Projects` when those are not set
 - project images should live under `assets/images/research/`
 
 ### 4. Add a new note
