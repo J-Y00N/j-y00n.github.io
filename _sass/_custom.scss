@@ -143,15 +143,20 @@ a:hover {
   padding: 2rem 0;
 }
 
-// Running text keeps about the same line length as before the page was widened; cards, headings, and the notes list use the full width.
+// Plain pages such as About, CV, and 404, and every note, sit in a centred reading column,
+// so a wider window adds space on both sides instead of only on the right.
+.page-reading,
+.entry {
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// On the list pages (Research, Publications, Notes), the intro text keeps the same line length while the lists use the full width.
 .page > p,
 .page > ul:not(.notes-list),
 .page > ol,
-.page > blockquote,
-.entry > p:not(.entry-back),
-.entry > ul,
-.entry > ol,
-.entry > blockquote {
+.page > blockquote {
   max-width: 48rem;
 }
 
