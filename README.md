@@ -540,14 +540,17 @@ General rule:
 
 ## Profile Image
 
-Use `assets/images/profile.jpg` or `assets/images/profile.png` for the main profile image.
+The home page shows `assets/images/profile-portrait.png`, a 4:5 portrait set by `photo` in `index.md`.
+`assets/images/profile.png` is the square version of the same image: link previews use it (`image` in `_config.yml`), and `photo` can point to it instead.
 
 General rule:
 
 - keep the main profile image at a stable top-level path under `assets/images/`
 - keep figures under `assets/images/research/`, `assets/images/publications/`, or `assets/images/notes/`
 - avoid mixing profile images with project-specific figures
-- if the image file name changes, also update `photo` in `index.md` and the default `image` in `_config.yml`
+- to switch the home photo between the two versions, change only `photo` in `index.md`; the comment on that line names the square file
+- if you replace the image with a new one, save both versions under the same names, or update `photo` in `index.md` and the default `image` in `_config.yml`
+- a square image suits link previews, because most sites show them square or crop them to the centre
 - the photo is always shown whole at its own aspect ratio, never cropped or stretched; a portrait image of about 640 x 800 pixels (4:5) fits best, because a 4:5 space is kept for it while it loads; save it as JPEG or PNG under about 100 KB
 - keep it JPEG or PNG rather than WebP, because it is also the default `image` for link previews (`og:image`), and some sites do not show WebP there
 
@@ -678,7 +681,7 @@ webmaster_verifications:
 - Add a project: create a file in `_projects/`
 - Add a note: create a file in `_notes/`
 - Add a publication: create a file in `_publications/`
-- Replace the profile image: overwrite `assets/images/profile.png`, or add a new file and update `photo` in `index.md` and `image` in `_config.yml`
+- Replace the profile image: overwrite `assets/images/profile-portrait.png` (home page, 4:5) and `assets/images/profile.png` (square, link previews), or point `photo` in `index.md` and `image` in `_config.yml` at new files
 - Add or replace a hosted PDF: put the file in `assets/files/`
 - Change navigation links: `_data/navigation.yml`
 - Change the short line under the site title: `tagline` in `_config.yml`

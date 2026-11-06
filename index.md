@@ -1,6 +1,6 @@
 ---
 layout: home
-photo: /assets/images/profile.png
+photo: /assets/images/profile-portrait.png # square version: /assets/images/profile.png
 site_info:
   - label: Status
     value: "Postgraduate applicant" # [graduate applicant / researcher / student]
