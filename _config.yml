@@ -7,6 +7,13 @@ url: 'https://j-y00n.github.io'
 baseurl: ''
 lang: 'en'
 timezone: 'Asia/Seoul'
+# Link previews read the language and region from locale.
+locale: 'en_US'
+# Profiles listed as related (sameAs) in the search-engine data of the home and About pages.
+# Keep the list in step with the real profile URLs in _data/profile_links.yml.
+social:
+  links:
+    - 'https://github.com/J-Y00N'
 markdown: kramdown
 permalink: pretty
 
