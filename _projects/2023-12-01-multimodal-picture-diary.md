@@ -5,7 +5,7 @@ description: "Trained two Stable Diffusion 1.5 LoRA style adapters, Monet and an
 featured: false
 venue: "Microsoft AI School, team project"
 period: "2023, refactored 2026"
-thumbnail_url: "/assets/images/research/picture-diary/styles.jpg"
+thumbnail_url: "/assets/images/research/picture-diary/styles.webp"
 links:
   - label: GitHub
     url: "https://github.com/J-Y00N/Multimodal-Picture-Diary"
